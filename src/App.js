@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './component/Navbar';
+import Home from './pages/Home';
+import PortfolioSection from './pages/PortfolioSection';
+import SkillsSection from './pages/SkillsSection';
+import ContactSection from './pages/ContactSection';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-lightBg dark:bg-darkBg transition-colors duration-300">
+      <Navbar />
+      
+      <main>
+        <Home />
+        <SkillsSection />
+        <PortfolioSection />
+        <ContactSection />
+      </main>
+
+      <footer className="py-10 text-center text-slate-500 border-t">
+        © {new Date().getFullYear()} Vansh Dev. All rights reserved.
+      </footer>
     </div>
   );
 }
