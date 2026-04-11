@@ -1,26 +1,31 @@
+// src/pages/HomePage.jsx
+import React from 'react';
 import Navbar from './component/Navbar';
 import Home from './pages/Home';
-import PortfolioSection from './pages/PortfolioSection';
-import SkillsSection from './pages/SkillsSection';
-import ContactSection from './pages/ContactSection';
+import About from './pages/About';
+import Skills from './pages/Skills';
+import Projects from './pages/Projects';
+import Stats from './pages/Stats';
+import ContactSection from "./pages/ContactSection";
+import Footer from './component/Footer';
+import ScrollProgress from './component/ScrollProgress';
+import BackToTop from './component/BackToTop';
 
-function App() {
+const App = () => {
   return (
-    <div className="bg-lightBg dark:bg-darkBg transition-colors duration-300">
+    <div className="bg-white dark:bg-slate-900">
+      <ScrollProgress />
       <Navbar />
-      
-      <main>
-        <Home />
-        <SkillsSection />
-        <PortfolioSection />
-        <ContactSection />
-      </main>
-
-      <footer className="py-10 text-center text-slate-500 border-t">
-        © {new Date().getFullYear()} Vansh Dev. All rights reserved.
-      </footer>
+      <Home />
+      <About />
+      <Skills />
+      <Projects />
+      <Stats />
+      <ContactSection />
+      <Footer />
+      <BackToTop />
     </div>
   );
-}
+};
 
 export default App;

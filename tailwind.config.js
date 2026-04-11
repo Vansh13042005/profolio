@@ -1,25 +1,28 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        // Light Mode
-        lightBg: "#F8FAFC",
-        lightText: "#0F172A",
-        // Dark Mode
-        darkBg: "#020617",
-        darkCard: "#0F172A",
-        darkText: "#E2E8F0",
-        // Brand
-        primary: {
-          light: "#2563EB",
-          dark: "#3B82F6",
+      fontFamily: {
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        'gradient': 'gradient 8s linear infinite',
+        'float': 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        gradient: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
         },
-        secondary: {
-          light: "#7C3AED",
-          dark: "#8B5CF6",
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
         },
       },
     },
