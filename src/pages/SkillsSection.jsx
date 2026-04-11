@@ -1,6 +1,6 @@
 // src/components/Skills.jsx
 import { motion } from 'framer-motion';
-import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaTools } from 'react-icons/fa';
+import { FaReact, FaJs, FaCss3Alt, FaNodeJs, FaTools } from 'react-icons/fa';
 
 const skillCategories = [
   {

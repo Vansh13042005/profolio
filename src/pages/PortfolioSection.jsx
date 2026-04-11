@@ -5,7 +5,7 @@ const projects = [
     title: "Eco-Tracker SaaS",
     desc: "A carbon footprint monitoring dashboard built with React and Node.js.",
     tags: ["React", "Tailwind", "Firebase"],
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=500"
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=500",
   },
   // Add more projects...
 ];
@@ -27,14 +27,16 @@ const Portfolio = () => {
               key={i}
               className="group bg-white dark:bg-darkCard rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 dark:border-slate-800"
             >
+              {/* Image */}
               <div className="h-48 overflow-hidden">
                 <img
                   src={p.img}
-                  alt={p.title}   // ✅ FIXED (important)
+                  alt={p.title || "Project Image"}  // ✅ Safe alt
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
 
+              {/* Content */}
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 dark:text-white">
                   {p.title}
@@ -44,6 +46,7 @@ const Portfolio = () => {
                   {p.desc}
                 </p>
 
+                {/* Tags */}
                 <div className="flex gap-2 mb-6 flex-wrap">
                   {p.tags.map((tag, index) => (
                     <span
@@ -55,6 +58,7 @@ const Portfolio = () => {
                   ))}
                 </div>
 
+                {/* Buttons */}
                 <div className="flex gap-4">
                   <button className="text-primary-light dark:text-primary-dark font-semibold hover:underline">
                     Demo
