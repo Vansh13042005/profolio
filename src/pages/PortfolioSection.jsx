@@ -1,4 +1,3 @@
-// src/components/Portfolio.jsx
 
 const projects = [
   {
@@ -7,7 +6,6 @@ const projects = [
     tags: ["React", "Tailwind", "Firebase"],
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=500",
   },
-  // Add more projects...
 ];
 
 const Portfolio = () => {
