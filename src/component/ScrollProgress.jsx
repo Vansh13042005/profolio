@@ -1,4 +1,3 @@
-// src/components/ScrollProgress.jsx
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -18,7 +17,7 @@ const ScrollProgress = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50"
+      className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 z-50"
       style={{ width: `${scroll}%` }}
     />
   );
