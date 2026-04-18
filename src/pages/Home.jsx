@@ -73,17 +73,6 @@ const HomePage = () => {
                 </motion.button>
               </Link>
             </div>
-            <div className="flex gap-6 justify-center mt-12">
-              <a href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-                {/* <Github size={24} /> */}
-              </a>
-              <a href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-                {/* <Linkedin size={24} /> */}
-              </a>
-              <a href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-                <Mail size={24} />
-              </a>
-            </div>
           </motion.div>
         </div>
         

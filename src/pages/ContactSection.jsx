@@ -81,21 +81,6 @@ const ContactPage = () => {
                   </div>
                 ))}
               </div>
-
-              <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
-                <h3 className="text-lg font-semibold mb-4">Connect with me</h3>
-                <div className="flex gap-4">
-                  <a href="#" className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-                    {/* <Github size={20} /> */}
-                  </a>
-                  <a href="#" className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-                    {/* <Linkedin size={20} /> */}
-                  </a>
-                  <a href="#" className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-                    {/* <Twitter size={20} /> */}
-                  </a>
-                </div>
-              </div>
             </motion.div>
 
             {/* Contact Form */}

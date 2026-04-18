@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Mail, Heart } from 'lucide-react';
+import {  Heart } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
@@ -16,20 +16,6 @@ const Footer = () => {
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
               Full Stack Developer crafting digital excellence
             </p>
-          </div>
-          <div className="flex gap-6">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-              {/* <Github size={20} /> */}
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-              {/* <Linkedin size={20} /> */}
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-              {/* <Twitter size={20} /> */}
-            </a>
-            <a href="#" className="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors">
-              {/* <Mail size={20} /> */}
-            </a>
           </div>
         </div>
         <div className="text-center mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
