@@ -39,8 +39,8 @@ const HomePage = () => {
                 options={{
                   strings: [
                     'Full Stack Developer',
-                    'React Expert',
-                    'UI/UX Enthusiast',
+                    'React Developer',
+                    'Node.js Developer',
                     'Problem Solver',
                   ],
                   autoStart: true,
