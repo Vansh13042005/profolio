@@ -6,9 +6,9 @@ import Loader from './component/Loader';
 import Home from './pages/Home';
 import About from './pages/About';
 import Skills from './pages/Skills';
-import Portfolio from './pages/Projects';
 import Contact from './pages/ContactSection';
 import ResumePage from './pages/ResumePage';
+import PortfolioSection from './pages/PortfolioSection';
 // import Resume if you have file
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="skills" element={<Skills />} />
-        <Route path="portfolio" element={<Portfolio />} />
+        <Route path="portfolio" element={<PortfolioSection />} />
         {/* <Route path="resume" element={<Resume />} /> */}
         <Route path="contact" element={<Contact />} />
         <Route path='resume' element={<ResumePage />} />
