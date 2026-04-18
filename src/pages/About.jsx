@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Briefcase, Code2, Users } from 'lucide-react';
-
+import vanshpatel from "../image/vanshpatel.png"
 const AboutPage = () => {
   const stats = [
     { icon: Award, value: '7+', label: 'Years Experience' },
@@ -83,7 +83,7 @@ const AboutPage = () => {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop"
+                  src={vanshpatel}
                   alt="Vansh Patel"
                   className="w-full h-auto"
                 />
