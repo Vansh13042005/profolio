@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Mail, Code2, Database, Layout, Server } from 'lucide-react';
+import { ArrowDown, Code2, Database, Layout, Server } from 'lucide-react';
 import Typewriter from 'typewriter-effect';
 import { Link } from 'react-router-dom';
 import { portfolioItems } from '../data/portfolioData';
