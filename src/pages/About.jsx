@@ -99,7 +99,7 @@ const AboutPage = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src={vanshpatel}
-                  alt="Vansh Patel – Software Developer and Laravel Expert based in Ahmedabad"
+                  alt="Vansh Patel"
                   className="w-full h-auto"
                   loading="eager"
                   width="600"
