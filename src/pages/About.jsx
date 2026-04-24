@@ -8,44 +8,75 @@ import { SITE } from '../config/seo';
 
 const AboutPage = () => {
   const stats = [
-    { icon: Award,    value: '7+',   label: 'Years Experience' },
-    { icon: Briefcase,value: '50+',  label: 'Projects Completed' },
-    { icon: Users,    value: '30+',  label: 'Happy Clients' },
-    { icon: Code2,    value: '100%', label: 'Dedication' },
+    { icon: Award,     value: '1+',   label: 'Years Experience' },
+    { icon: Briefcase, value: '5+',   label: 'Projects Completed' },
+    { icon: Users,     value: '3+',   label: 'Happy Clients' },
+    { icon: Code2,     value: '100%', label: 'Dedication' },
   ];
 
   const expertise = [
-    { name: 'Problem Solving', level: 'Expert',   years: '7 years' },
-    { name: 'WordPress',       level: 'Expert',   years: '5 years' },
-    { name: 'Laravel',         level: 'Advanced', years: '2 years' },
-    { name: 'HTML5/CSS3',      level: 'Advanced', years: '5 years' },
-    { name: 'JavaScript',      level: 'Advanced', years: '5 years' },
-    { name: 'MySQL',           level: 'Advanced', years: '7 years' },
+    { name: 'React.js',         level: 'Expert',   years: '1 year' },
+    { name: 'Node.js/Express',  level: 'Advanced', years: '1 year' },
+    { name: 'JavaScript ES6+',  level: 'Expert',   years: '2 years' },
+    { name: 'HTML5/CSS3',       level: 'Expert',   years: '2 years' },
+    { name: 'MySQL & MongoDB',  level: 'Advanced', years: '1 year' },
+    { name: 'Git & GitHub',     level: 'Advanced', years: '1 year' },
   ];
 
   const services = [
-    'Custom Plugin Development',
-    'Single Page Applications',
-    'WooCommerce Development',
-    'Payment Gateway Integration',
-    'Custom WordPress Development',
-    'Responsive Website Design',
+    'React.js Development',
+    'Node.js & Express APIs',
+    'Full Stack Web Applications',
+    'REST API Development',
+    'Responsive UI Design',
+    'Database Design & Development',
   ];
 
-  /* ── JSON-LD ── */
+  /* ── JSON-LD Schema ── */
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Vansh Patel',
+    url: 'https://www.vanshpatel.in',
+    image: 'https://www.vanshpatel.in/VanshPatel.png',
+    jobTitle: 'Full Stack Developer',
+    description: 'Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and modern JavaScript.',
+    email: SITE.email,
+    telephone: SITE.phone,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Ahmedabad',
+      addressRegion: 'Gujarat',
+      addressCountry: 'India',
+    },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'Silver Oak University',
+      address: 'Ahmedabad, Gujarat, India',
+    },
+    sameAs: [
+      'https://linkedin.com/in/patelvansh13',
+      'https://github.com/Vansh13042005',
+    ],
+    knowsAbout: [
+      'React.js', 'Node.js', 'Express.js', 'JavaScript',
+      'HTML5', 'CSS3', 'MySQL', 'MongoDB', 'AWS', 'Git', 'REST APIs',
+    ],
+  };
+
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Software Development Services',
-    provider: { '@type': 'Person', name: SITE.name },
+    name: 'Full Stack Development Services',
+    provider: { '@type': 'Person', name: SITE.name, url: SITE.url },
     serviceType: services,
     areaServed: 'Worldwide',
-    description: 'Professional software development services including custom WordPress development, WooCommerce solutions, and Laravel web applications.',
+    description: 'Professional full stack development services including React.js frontend, Node.js backend, REST APIs, and database design.',
   };
 
   return (
     <>
-      <SEO page="about" schema={serviceSchema} />
+      <SEO page="about" schema={[personSchema, serviceSchema]} />
 
       {/* ── Hero ── */}
       <section
@@ -53,11 +84,16 @@ const AboutPage = () => {
         aria-label="About Hero Section"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
             <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-4">About Me</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
-              Passionate Software Developer crafting innovative digital solutions with 7+ years of experience
+              Passionate Full Stack Developer building modern web applications with React.js & Node.js
             </p>
           </motion.div>
         </div>
@@ -89,6 +125,8 @@ const AboutPage = () => {
       <section className="py-20" aria-label="Biography">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
+
+            {/* Photo */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -99,7 +137,8 @@ const AboutPage = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src={vanshpatel}
-                  alt="Vansh Patel"
+                  alt="Vansh Patel – Full Stack Developer from Ahmedabad"
+                  title="Vansh Patel – Full Stack Developer"
                   className="w-full h-auto"
                   loading="eager"
                   width="600"
@@ -109,6 +148,7 @@ const AboutPage = () => {
               </div>
             </motion.div>
 
+            {/* Bio Text */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -116,31 +156,66 @@ const AboutPage = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold mb-4">{SITE.name}</h2>
-              <p className="text-xl text-blue-600 dark:text-blue-400 mb-6">Software Developer | Laravel &amp; WordPress Specialist</p>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                Passionate Software Developer specialising in{' '}
-                <strong className="text-blue-600">Laravel</strong>,{' '}
-                <strong className="text-blue-600">WordPress</strong>, and{' '}
-                <strong className="text-blue-600">Custom PHP development</strong>.
-                I bridge the gap between complex business requirements and high-performance technical solutions,
-                delivering scalable and secure web applications built for growth. Based in Ahmedabad, Gujarat, India.
+              <p className="text-xl text-blue-600 dark:text-blue-400 mb-6">
+                Full Stack Developer | React.js &amp; Node.js Specialist
               </p>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                Passionate Full Stack Developer specialising in{' '}
+                <strong className="text-blue-600">React.js</strong>,{' '}
+                <strong className="text-blue-600">Node.js</strong>, and{' '}
+                <strong className="text-blue-600">modern JavaScript</strong>.
+                I build responsive, high-performance web applications and REST APIs,
+                delivering seamless user experiences. Currently working at{' '}
+                <strong className="text-blue-600">Purvsoft Technologies</strong>,
+                Ahmedabad. BCA graduate from Silver Oak University with CGPA 8.50.
+              </p>
+
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                  <a href={`mailto:${SITE.email}`} className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
+                  >
                     📧 {SITE.email}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                  <a href={`tel:${SITE.phone}`} className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                  <a
+                    href={`tel:${SITE.phone}`}
+                    className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
+                  >
                     📞 {SITE.phone}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                  <span className="text-slate-700 dark:text-slate-300">📍 {SITE.location}</span>
+                  <span className="text-slate-700 dark:text-slate-300">
+                    📍 {SITE.location}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full" />
+                  <a
+                    href="https://linkedin.com/in/patelvansh13"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
+                  >
+                    🔗 linkedin.com/in/patelvansh13
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full" />
+                  <a
+                    href="https://github.com/Vansh13042005"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors"
+                  >
+                    💻 github.com/Vansh13042005
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -180,19 +255,21 @@ const AboutPage = () => {
                 <div
                   className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2"
                   role="progressbar"
-                  aria-valuenow={item.level === 'Expert' ? 95 : 75}
+                  aria-valuenow={item.level === 'Expert' ? 90 : 75}
                   aria-valuemin={0}
                   aria-valuemax={100}
                   aria-label={`${item.name} skill level`}
                 >
                   <motion.div
                     initial={{ width: 0 }}
-                    whileInView={{ width: item.level === 'Expert' ? '95%' : '75%' }}
+                    whileInView={{ width: item.level === 'Expert' ? '90%' : '75%' }}
                     transition={{ duration: 1, delay: 0.2 }}
                     className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full"
                   />
                 </div>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">{item.years} of experience</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                  {item.years} of experience
+                </p>
               </motion.div>
             ))}
           </div>
@@ -211,7 +288,9 @@ const AboutPage = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">What I Do</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
-            <p className="text-slate-600 dark:text-slate-400 mt-4">Professional services tailored to your business needs</p>
+            <p className="text-slate-600 dark:text-slate-400 mt-4">
+              Professional services tailored to your needs
+            </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
