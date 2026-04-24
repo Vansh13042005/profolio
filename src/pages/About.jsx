@@ -137,7 +137,7 @@ const AboutPage = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src={vanshpatel}
-                  alt="Vansh Patel – Full Stack Developer from Ahmedabad"
+                  alt="Vansh Patel – Full Stack Developer"
                   title="Vansh Patel – Full Stack Developer"
                   className="w-full h-auto"
                   loading="eager"
