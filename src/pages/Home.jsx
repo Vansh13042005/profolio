@@ -15,9 +15,9 @@ const HomePage = () => {
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: `${SITE.name} – Software Developer Portfolio`,
+    name: `${SITE.name} – Full Stack Developer Portfolio`,
     url: SITE.url,
-    description: 'Portfolio of Vansh Patel, Software Developer specialising in Laravel, WordPress, and Custom PHP.',
+    description: 'Portfolio of Vansh Patel, Full Stack Developer specialising in React.js, Node.js, and JavaScript.',
     potentialAction: {
       '@type': 'SearchAction',
       target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/portfolio?q={search_term_string}` },
@@ -28,11 +28,17 @@ const HomePage = () => {
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Software Development Services',
+    name: 'Full Stack Development Services',
     provider: { '@type': 'Person', name: SITE.name, url: SITE.url },
-    serviceType: ['Custom Plugin Development', 'WordPress Development', 'Laravel Development', 'WooCommerce Development', 'Payment Gateway Integration'],
+    serviceType: [
+      'React.js Development',
+      'Node.js & Express API Development',
+      'Full Stack Web Applications',
+      'REST API Development',
+      'Database Design & Development',
+    ],
     areaServed: 'Worldwide',
-    description: 'Professional software development services including custom WordPress, WooCommerce, and Laravel web applications.',
+    description: 'Professional full stack development services including React.js frontend, Node.js backend, REST APIs, and database design.',
   };
 
   return (
@@ -55,7 +61,9 @@ const HomePage = () => {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 px-4 py-2 rounded-full mb-6"
             >
               <Code2 size={16} className="text-blue-600" />
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Available for freelance work</span>
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                Available for work
+              </span>
             </motion.div>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">
@@ -65,7 +73,13 @@ const HomePage = () => {
             <div className="text-2xl sm:text-3xl md:text-4xl text-slate-600 dark:text-slate-300 mb-8">
               <Typewriter
                 options={{
-                  strings: ['Software Developer', 'Laravel Expert', 'WordPress Specialist', 'PHP Developer', 'Problem Solver'],
+                  strings: [
+                    'Full Stack Developer',
+                    'React.js Developer',
+                    'Node.js Developer',
+                    'JavaScript Expert',
+                    'Problem Solver',
+                  ],
                   autoStart: true,
                   loop: true,
                   delay: 50,
@@ -75,10 +89,10 @@ const HomePage = () => {
             </div>
 
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-12">
-              I craft scalable, secure web applications using{' '}
-              <strong className="text-blue-600">Laravel</strong>,{' '}
-              <strong className="text-blue-600">WordPress</strong>, and{' '}
-              <strong className="text-blue-600">Custom PHP</strong>.
+              I craft beautiful, responsive, and high-performance web applications using{' '}
+              <strong className="text-blue-600">React.js</strong>,{' '}
+              <strong className="text-blue-600">Node.js</strong>, and{' '}
+              <strong className="text-blue-600">modern JavaScript</strong>.
               Based in Ahmedabad, available worldwide.
             </p>
 
@@ -129,15 +143,17 @@ const HomePage = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">What I Do</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
-            <p className="text-slate-600 dark:text-slate-400 mt-4">Professional web development services</p>
+            <p className="text-slate-600 dark:text-slate-400 mt-4">
+              Professional full stack development services
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Layout,   title: 'WordPress Development',  desc: 'Custom themes, plugins, and WooCommerce stores' },
-              { icon: Server,   title: 'Laravel Development',     desc: 'Scalable PHP web apps and REST APIs' },
-              { icon: Database, title: 'Database Design',         desc: 'Efficient MySQL & PostgreSQL architecture' },
-              { icon: Code2,    title: 'Custom PHP Development',  desc: 'Bespoke web solutions built for performance' },
+              { icon: Layout,   title: 'React.js Development',    desc: 'Responsive, modern UI components and single-page applications' },
+              { icon: Server,   title: 'Node.js & Express',        desc: 'Scalable REST APIs and backend services' },
+              { icon: Database, title: 'Database Design',          desc: 'Efficient MySQL & MongoDB architecture' },
+              { icon: Code2,    title: 'Full Stack Projects',      desc: 'End-to-end web applications built for performance' },
             ].map((service, index) => (
               <motion.div
                 key={index}
@@ -198,7 +214,10 @@ const HomePage = () => {
                   <p className="text-slate-600 dark:text-slate-400 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.slice(0, 3).map((tech, i) => (
-                      <span key={i} className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">
+                      <span
+                        key={i}
+                        className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded"
+                      >
                         {tech}
                       </span>
                     ))}

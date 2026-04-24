@@ -5,52 +5,33 @@
 // ============================================================
 
 export const SITE = {
-  name:        'Vansh Patel',
-  role:        'Software Developer',
-  tagline:     'Laravel & WordPress Expert | PHP Developer Ahmedabad',
-  url:         'https://www.vanshpatel.in',          // ← live domain
-  email:       'info@vanshpatel.in',
-  phone:       '+917874369355',
-  whatsapp:    'https://wa.me/917874369355',
-  location:    'Ahmedabad, Gujarat, India',
-  geo: {
-    region:    'IN-GJ',
-    placename: 'Ahmedabad, Gujarat, India',
-    position:  '23.0225;72.5714',
-  },
-  social: {
-    github:    'https://github.com/vanshpatel',
-    linkedin:  'https://linkedin.com/in/vanshpatel',
-    twitter:   'https://twitter.com/vanshpatel',
-  },
-  ogImage:       'https://www.vanshpatel.in/og-image.jpg',   // 1200×630 px
-  twitterImage:  'https://www.vanshpatel.in/twitter-image.jpg',
-  logoImage:     'https://www.vanshpatel.in/profile.jpg',
-  themeColor:    '#2563eb',
-  googleVerify:  '5xpYf9seCnaC4Hb4ep3OG28kyajDwYjH73axtF5UpBY', // GSC code
+  name:     'Vansh Patel',
+  role:     'React & Node.js Full Stack Developer',
+  tagline:  'React & Node.js Expert | Full Stack Developer Ahmedabad',
+  url:      'https://www.vanshpatel.in',
+  email:    'patelvansh1305@gmail.com',
+  phone:    '+919023954043',
 };
-
-// ── Per-page meta ────────────────────────────────────────────
 
 export const PAGE_META = {
   home: {
-    title:       `${SITE.name} | Software Developer – Laravel & WordPress Expert`,
-    description: `${SITE.name} is a Software Developer from Ahmedabad specialising in Laravel, WordPress, and Custom PHP. 7+ years experience, 50+ projects, available for freelance work.`,
-    keywords:    'Vansh Patel, Software Developer, Laravel Developer, WordPress Developer, PHP Developer Ahmedabad, Freelance Developer India, Custom Plugin Development, WooCommerce Expert',
+    title:       'Vansh Patel | Full Stack Developer – React & Node.js Expert',
+    description: 'Vansh Patel is a Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and JavaScript. 6+ months experience, available for work.',
+    keywords:    'Vansh Patel, Full Stack Developer, React Developer, Node.js Developer, JavaScript Developer Ahmedabad, Frontend Developer India, React.js Expert',
     canonical:   SITE.url,
     ogType:      'website',
   },
   about: {
-    title:       `About ${SITE.name} | Laravel & WordPress Specialist`,
-    description: `Learn about ${SITE.name} – a passionate Software Developer from Ahmedabad specialising in Laravel, WordPress, and Custom PHP development with 7+ years of experience.`,
-    keywords:    'Vansh Patel about, Software Developer Ahmedabad, Laravel Developer, WordPress Expert, PHP Developer, Full Stack Developer Gujarat',
+    title:       'About Vansh Patel | React & Node.js Full Stack Developer',
+    description: 'Learn about Vansh Patel – a Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and modern JavaScript with hands-on project experience.',
+    keywords:    'Vansh Patel about, Full Stack Developer Ahmedabad, React Developer, Node.js Developer, BCA Graduate Silver Oak University',
     canonical:   `${SITE.url}/about`,
     ogType:      'profile',
   },
   skills: {
-    title:       `Skills & Expertise | ${SITE.name} – PHP, WordPress, Laravel`,
-    description: `Explore the technical skills of ${SITE.name}: PHP (95%), WordPress (95%), Laravel (75%), JavaScript, MySQL, Docker and more. Ahmedabad-based web developer.`,
-    keywords:    'Vansh Patel skills, PHP developer, WordPress developer skills, Laravel expertise, MySQL, Docker, JavaScript developer',
+    title:       'Skills | Vansh Patel – React, Node.js, JavaScript',
+    description: 'Technical skills of Vansh Patel: React.js, Node.js, JavaScript (ES6), HTML5, CSS3, MySQL, MongoDB, AWS, Git and more.',
+    keywords:    'Vansh Patel skills, React developer skills, Node.js expertise, JavaScript developer, MySQL, MongoDB, AWS',
     canonical:   `${SITE.url}/skills`,
     ogType:      'website',
   },

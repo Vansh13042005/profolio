@@ -52,7 +52,8 @@ const SEO = ({
       addressCountry:    'India',
     },
     sameAs: Object.values(SITE.social),
-    knowsAbout: ['Laravel', 'WordPress', 'PHP', 'JavaScript', 'MySQL', 'WooCommerce', 'Docker', 'Git'],
+    knowsAbout: ['React.js', 'Node.js', 'JavaScript', 'HTML5', 'CSS3', 
+             'MySQL', 'MongoDB', 'AWS', 'Git', 'REST APIs'],
   };
 
   /* ── Breadcrumb ── */
