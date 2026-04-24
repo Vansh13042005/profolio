@@ -28,12 +28,23 @@
 
     <!-- ═══════════════════════════════════════════
          FAVICON & ICONS
+         ORDER MATTERS: Google reads top-to-bottom and
+         picks the LAST matching rule — put .ico first,
+         then PNG overrides for modern browsers.
+         Google Search requires the favicon to be:
+           • Square (1:1 ratio)
+           • At least 48 × 48 px
+           • Accessible (not blocked by robots.txt)
     ════════════════════════════════════════════ -->
-    <link rel="icon"             href="%PUBLIC_URL%/VanshPatel.png" />
-    <link rel="icon"             type="image/png" sizes="32x32" href="%PUBLIC_URL%/VanshPatel.png" />
-    <link rel="icon"             type="image/png" sizes="16x16" href="%PUBLIC_URL%/VanshPatel.png" />
-    <link rel="apple-touch-icon" sizes="180x180"  href="%PUBLIC_URL%/VanshPatel.png" />
-    <link rel="manifest"         href="%PUBLIC_URL%/manifest.json" />
+    <!-- 1. .ico fallback — Google crawler uses this -->
+    <link rel="icon" href="%PUBLIC_URL%/VanshPatel.png" />
+    <!-- 2. PNG for modern browsers (overrides .ico) -->
+    <link rel="icon" type="image/png" sizes="32x32"   href="%PUBLIC_URL%/VanshPatel.png" />
+    <link rel="icon" type="image/png" sizes="16x16"   href="%PUBLIC_URL%/VanshPatel.png" />
+    <!-- 3. Apple touch icon (iOS home screen) -->
+    <link rel="apple-touch-icon" sizes="180x180"      href="%PUBLIC_URL%/VanshPatel.png" />
+    <!-- 4. Web App Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <!-- ═══════════════════════════════════════════
          PERFORMANCE – preconnect to external origins
@@ -42,13 +53,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.google-analytics.com" />
-    <!-- DNS-prefetch fallback for older browsers -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
 
     <!-- ═══════════════════════════════════════════
          PRIMARY META
-         (react-helmet-async overrides these per page)
     ════════════════════════════════════════════ -->
     <title>Vansh Patel | Software Developer – Laravel &amp; WordPress Expert</title>
     <meta name="title"       content="Vansh Patel | Software Developer – Laravel &amp; WordPress Expert" />
@@ -58,7 +67,6 @@
     <meta name="language"    content="English" />
     <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-    <!-- Canonical (Helmet overrides per page) -->
     <link rel="canonical" href="https://www.vanshpatel.in/" />
 
     <!-- ═══════════════════════════════════════════
@@ -98,7 +106,7 @@
     <meta name="google-site-verification" content="5xpYf9seCnaC4Hb4ep3OG28kyajDwYjH73axtF5UpBY" />
 
     <!-- ═══════════════════════════════════════════
-         STRUCTURED DATA – site-wide Person + WebSite schema
+         STRUCTURED DATA
     ════════════════════════════════════════════ -->
     <script type="application/ld+json">
     {
@@ -106,7 +114,7 @@
       "@type": "Person",
       "name": "Vansh Patel",
       "url": "https://www.vanshpatel.in",
-      "image": "https://www.vanshpatel.in/profile.jpg",
+      "image": "https://www.vanshpatel.in/VanshPatel.png",
       "jobTitle": "Software Developer",
       "description": "Software Developer from Ahmedabad specialising in Laravel, WordPress, and Custom PHP. 7+ years experience.",
       "email": "info@vanshpatel.in",
@@ -137,19 +145,17 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) – must be first element inside <body> -->
+    <!-- Google Tag Manager (noscript) – must be FIRST inside <body> -->
     <noscript>
       <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-58HJ3BMD"
-        height="0"
-        width="0"
+        height="0" width="0"
         style="display:none;visibility:hidden"
         title="Google Tag Manager"
       ></iframe>
     </noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Accessible no-JS fallback for crawlers that skip JavaScript -->
+    <!-- Content fallback for crawlers / no-JS users -->
     <noscript>
       <div style="font-family:sans-serif;max-width:640px;margin:60px auto;padding:24px;text-align:center;line-height:1.6">
         <h1 style="color:#1e293b">Vansh Patel – Software Developer</h1>

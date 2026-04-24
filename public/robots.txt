@@ -3,7 +3,10 @@
 
 User-agent: *
 Allow: /
+Allow: /VanshPatel.png
+Allow: /favicon.ico
 Disallow: /static/
 Disallow: /*.json$
+Allow: /manifest.json
 
 Sitemap: https://www.vanshpatel.in/sitemap.xml
