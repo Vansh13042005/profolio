@@ -12,8 +12,6 @@ export const SITE = {
   phone:       '+919023954043',
   whatsapp:    'https://wa.me/919023954043',
   location:    'Ahmedabad, Gujarat, India',
-
-  // ✅ Error fix — social object added
   geo: {
     region:    'IN-GJ',
     placename: 'Ahmedabad, Gujarat, India',
@@ -25,9 +23,11 @@ export const SITE = {
     twitter:  'https://twitter.com/vanshpatel',
   },
 
-  ogImage:      'https://www.vanshpatel.in/og-image.jpg',
-  twitterImage: 'https://www.vanshpatel.in/twitter-image.jpg',
+  // ✅ VanshPatel.png — સૌ જગ્યાએ same image
+  ogImage:      'https://www.vanshpatel.in/VanshPatel.png',
+  twitterImage: 'https://www.vanshpatel.in/VanshPatel.png',
   logoImage:    'https://www.vanshpatel.in/VanshPatel.png',
+
   themeColor:   '#2563eb',
   googleVerify: '5xpYf9seCnaC4Hb4ep3OG28kyajDwYjH73axtF5UpBY',
 };
