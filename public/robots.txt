@@ -1,3 +1,9 @@
+# robots.txt – vanshpatel.in
 # https://www.robotstxt.org/robotstxt.html
+
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /static/
+Disallow: /*.json$
+
+Sitemap: https://www.vanshpatel.in/sitemap.xml

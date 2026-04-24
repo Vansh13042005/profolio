@@ -1,24 +1,26 @@
+// src/pages/AboutPage.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Briefcase, Code2, Users } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
-import vanshpatel from "../image/vanshpatel.png";
+import vanshpatel from '../image/vanshpatel.png';
+import SEO from '../component/SEO';
+import { SITE } from '../config/seo';
 
 const AboutPage = () => {
   const stats = [
-    { icon: Award, value: '7+', label: 'Years Experience' },
-    { icon: Briefcase, value: '50+', label: 'Projects Completed' },
-    { icon: Users, value: '30+', label: 'Happy Clients' },
-    { icon: Code2, value: '100%', label: 'Dedication' },
+    { icon: Award,    value: '7+',   label: 'Years Experience' },
+    { icon: Briefcase,value: '50+',  label: 'Projects Completed' },
+    { icon: Users,    value: '30+',  label: 'Happy Clients' },
+    { icon: Code2,    value: '100%', label: 'Dedication' },
   ];
 
   const expertise = [
-    { name: 'Problem Solving', level: 'Expert', years: '7 years' },
-    { name: 'WordPress', level: 'Expert', years: '5 years' },
-    { name: 'Laravel', level: 'Advanced', years: '2 years' },
-    { name: 'HTML5/CSS3', level: 'Advanced', years: '5 years' },
-    { name: 'JavaScript', level: 'Advanced', years: '5 years' },
-    { name: 'MySQL', level: 'Advanced', years: '7 years' },
+    { name: 'Problem Solving', level: 'Expert',   years: '7 years' },
+    { name: 'WordPress',       level: 'Expert',   years: '5 years' },
+    { name: 'Laravel',         level: 'Advanced', years: '2 years' },
+    { name: 'HTML5/CSS3',      level: 'Advanced', years: '5 years' },
+    { name: 'JavaScript',      level: 'Advanced', years: '5 years' },
+    { name: 'MySQL',           level: 'Advanced', years: '7 years' },
   ];
 
   const services = [
@@ -30,162 +32,28 @@ const AboutPage = () => {
     'Responsive Website Design',
   ];
 
-  // JSON-LD Structured Data for Person/About Page
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Vansh Patel",
-    "url": "https://www.vanshpatel.dev/about",
-    "image": "https://www.vanshpatel.dev/profile.jpg",
-    "jobTitle": "Software Developer",
-    "description": "Passionate Software Developer specializing in Laravel, WordPress, and Custom PHP development. Delivering scalable and secure web applications.",
-    "email": "info@patelVansh.site",
-    "telephone": "+917874369355",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Ahmedabad",
-      "addressRegion": "Gujarat",
-      "addressCountry": "India"
-    },
-    "knowsAbout": ["Laravel", "WordPress", "PHP", "JavaScript", "HTML5", "CSS3", "MySQL", "WooCommerce"],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Freelance"
-    },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Your University Name"
-    },
-    "sameAs": [
-      "https://github.com/vanshpatel",
-      "https://linkedin.com/in/vanshpatel",
-      "https://twitter.com/vanshpatel"
-    ]
-  };
-
-  const aboutPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About Vansh Patel - Software Developer",
-    "url": "https://www.vanshpatel.dev/about",
-    "description": "Learn about Vansh Patel, a passionate Software Developer specializing in Laravel, WordPress, and Custom PHP development with 7+ years of experience.",
-    "mainEntity": {
-      "@type": "Person",
-      "name": "Vansh Patel"
-    }
-  };
-
+  /* ── JSON-LD ── */
   const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Software Development Services",
-    "provider": {
-      "@type": "Person",
-      "name": "Vansh Patel"
-    },
-    "serviceType": [
-      "Custom Plugin Development",
-      "Single Page Applications",
-      "WooCommerce Development",
-      "Payment Gateway Integration",
-      "Custom WordPress Development",
-      "Responsive Website Design"
-    ],
-    "areaServed": "Worldwide",
-    "description": "Professional software development services including custom WordPress development, WooCommerce solutions, and web applications."
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.vanshpatel.dev"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "About",
-        "item": "https://www.vanshpatel.dev/about"
-      }
-    ]
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Software Development Services',
+    provider: { '@type': 'Person', name: SITE.name },
+    serviceType: services,
+    areaServed: 'Worldwide',
+    description: 'Professional software development services including custom WordPress development, WooCommerce solutions, and Laravel web applications.',
   };
 
   return (
     <>
-      <Helmet>
-        {/* Primary Meta Tags */}
-        <title>About Vansh Patel | Software Developer - Laravel & WordPress Expert</title>
-        <meta name="title" content="About Vansh Patel | Software Developer - Laravel & WordPress Expert" />
-        <meta name="description" content="Learn about Vansh Patel, a passionate Software Developer specializing in Laravel, WordPress, PHP, and custom web development. 7+ years experience, 50+ projects completed." />
-        <meta name="keywords" content="Vansh Patel, Software Developer, Laravel Developer, WordPress Developer, PHP Developer, Web Developer Ahmedabad, Full Stack Developer, Custom Plugin Development, WooCommerce Expert, Freelance Developer India" />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <meta name="author" content="Vansh Patel" />
-        <meta name="language" content="English" />
-        
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://www.vanshpatel.dev/about" />
-        
-        {/* Open Graph / Facebook Meta Tags */}
-        <meta property="og:type" content="profile" />
-        <meta property="og:url" content="https://www.vanshpatel.dev/about" />
-        <meta property="og:title" content="About Vansh Patel | Software Developer Portfolio" />
-        <meta property="og:description" content="Passionate Software Developer specializing in Laravel, WordPress, and Custom PHP development. 7+ years of experience delivering scalable web applications." />
-        <meta property="og:image" content="https://www.vanshpatel.dev/og-about.jpg" />
-        <meta property="og:image:alt" content="Vansh Patel - Software Developer" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Vansh Patel Portfolio" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="profile:first_name" content="Vansh" />
-        <meta property="profile:last_name" content="Patel" />
-        
-        {/* Twitter Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.vanshpatel.dev/about" />
-        <meta name="twitter:title" content="About Vansh Patel | Software Developer" />
-        <meta name="twitter:description" content="Software Developer specializing in Laravel, WordPress, and PHP. 7+ years experience, 50+ projects completed." />
-        <meta name="twitter:image" content="https://www.vanshpatel.dev/twitter-about.jpg" />
-        
-        {/* Verification Tags */}
-        <meta name="google-site-verification" content="YOUR_GOOGLE_SEARCH_CONSOLE_CODE" />
-        
-        {/* Geographic Meta Tags */}
-        <meta name="geo.region" content="IN-GJ" />
-        <meta name="geo.placename" content="Ahmedabad, Gujarat, India" />
-        <meta name="geo.position" content="23.0225;72.5714" />
-        
-        {/* Mobile Optimization */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-        <meta name="theme-color" content="#2563eb" />
-      </Helmet>
+      <SEO page="about" schema={serviceSchema} />
 
-      {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(personSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(aboutPageSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(serviceSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(breadcrumbSchema)}
-      </script>
-
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-900" aria-label="About Hero Section">
+      {/* ── Hero ── */}
+      <section
+        className="relative py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-900"
+        aria-label="About Hero Section"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-4">About Me</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
@@ -195,7 +63,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* ── Stats ── */}
       <section className="py-12 bg-white dark:bg-slate-800" aria-label="Statistics">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -217,7 +85,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Bio Section */}
+      {/* ── Bio ── */}
       <section className="py-20" aria-label="Biography">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -231,9 +99,11 @@ const AboutPage = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src={vanshpatel}
-                  alt="Vansh Patel - Software Developer and Laravel Expert"
+                  alt="Vansh Patel – Software Developer and Laravel Expert based in Ahmedabad"
                   className="w-full h-auto"
                   loading="eager"
+                  width="600"
+                  height="600"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
               </div>
@@ -245,26 +115,32 @@ const AboutPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold mb-4">Vansh Patel</h2>
-              <p className="text-xl text-blue-600 dark:text-blue-400 mb-6">Software Developer | Laravel & WordPress Specialist</p>
+              <h2 className="text-3xl font-bold mb-4">{SITE.name}</h2>
+              <p className="text-xl text-blue-600 dark:text-blue-400 mb-6">Software Developer | Laravel &amp; WordPress Specialist</p>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                Passionate Software Developer specializing in <strong className="text-blue-600">Laravel</strong>, 
-                <strong className="text-blue-600"> WordPress</strong>, and <strong className="text-blue-600">Custom PHP development</strong>. 
-                I bridge the gap between complex business requirements and high-performance technical solutions, 
+                Passionate Software Developer specialising in{' '}
+                <strong className="text-blue-600">Laravel</strong>,{' '}
+                <strong className="text-blue-600">WordPress</strong>, and{' '}
+                <strong className="text-blue-600">Custom PHP development</strong>.
+                I bridge the gap between complex business requirements and high-performance technical solutions,
                 delivering scalable and secure web applications built for growth. Based in Ahmedabad, Gujarat, India.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                  <span className="text-slate-700 dark:text-slate-300">📧 info@patelVansh.site</span>
+                  <a href={`mailto:${SITE.email}`} className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                    📧 {SITE.email}
+                  </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                  <span className="text-slate-700 dark:text-slate-300">📞 +91 7874369355</span>
+                  <a href={`tel:${SITE.phone}`} className="text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                    📞 {SITE.phone}
+                  </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                  <span className="text-slate-700 dark:text-slate-300">📍 Ahmedabad, Gujarat, India</span>
+                  <span className="text-slate-700 dark:text-slate-300">📍 {SITE.location}</span>
                 </div>
               </div>
             </motion.div>
@@ -272,7 +148,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Technical Expertise */}
+      {/* ── Technical Expertise ── */}
       <section className="py-20 bg-slate-50 dark:bg-slate-800" aria-label="Technical Expertise">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -301,7 +177,14 @@ const AboutPage = () => {
                   <h3 className="font-semibold text-lg">{item.name}</h3>
                   <span className="text-sm text-blue-600 dark:text-blue-400">{item.level}</span>
                 </div>
-                <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                <div
+                  className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2"
+                  role="progressbar"
+                  aria-valuenow={item.level === 'Expert' ? 95 : 75}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`${item.name} skill level`}
+                >
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: item.level === 'Expert' ? '95%' : '75%' }}
@@ -316,7 +199,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* ── Services ── */}
       <section className="py-20" aria-label="Services Offered">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
