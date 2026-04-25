@@ -38,7 +38,7 @@ const AboutPage = () => {
     '@type': 'Person',
     name: 'Vansh Patel',
     url: 'https://www.vanshpatel.in',
-    image: 'https://www.vanshpatel.in/VanshPatel.png',
+    image: 'https://www.vanshpatel.in/vanshpatel.png',
     jobTitle: 'Full Stack Developer',
     description: 'Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and modern JavaScript.',
     email: SITE.email,
@@ -135,15 +135,15 @@ const AboutPage = () => {
               className="relative"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src={vanshpatel}
-                  alt="Vansh Patel – Full Stack Developer"
-                  title="Vansh Patel – Full Stack Developer"
-                  className="w-full h-auto"
-                  loading="eager"
-                  width="600"
-                  height="600"
-                />
+                  <img
+                    src={vanshpatel}
+                    alt="Vansh Patel - Full Stack Developer from Ahmedabad"
+                    title="Vansh Patel – Full Stack Developer"
+                    className="w-full h-auto"
+                    loading="eager"
+                    width="600"
+                    height="600"
+                  />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
               </div>
             </motion.div>
