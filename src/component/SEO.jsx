@@ -8,8 +8,8 @@ import { Helmet } from 'react-helmet-async';
 import { SITE, PAGE_META } from '../config/seo';
 
 /**
- * @param {string}  page          - key of PAGE_META ("home"|"about"|etc.)
- * @param {string}  [title]       - override title
+ * @param {string}  page       - key of PAGE_META ("home"|"about"|etc.)
+ * @param {string}  [title]    - override title
  * @param {string}  [description] - override description
  * @param {string}  [canonical]   - override canonical URL
  * @param {string}  [ogType]      - override og:type
@@ -27,13 +27,12 @@ const SEO = ({
 }) => {
   const meta = page ? PAGE_META[page] : {};
 
-  const _title     = title       || meta.title       || SITE.name;
-  const _desc      = description || meta.description || '';
-  const _canonical = canonical   || meta.canonical   || SITE.url;
-  const _ogType    = ogType      || meta.ogType      || 'website';
-  // ✅ FIX: Always use SITE.ogImage (now lowercase and in public/)
-  const _ogImage   = ogImage     || SITE.ogImage;
-  const _keywords  = meta.keywords || '';
+  const _title       = title       || meta.title       || SITE.name;
+  const _desc        = description || meta.description || '';
+  const _canonical   = canonical   || meta.canonical   || SITE.url;
+  const _ogType      = ogType      || meta.ogType      || 'website';
+  const _ogImage     = ogImage     || SITE.ogImage;
+  const _keywords    = meta.keywords || '';
 
   /* ── Common person schema shared across all pages ── */
   const personSchema = {
@@ -41,23 +40,20 @@ const SEO = ({
     '@type': 'Person',
     name:        SITE.name,
     url:         SITE.url,
-    // ✅ FIX: Use SITE.logoImage which now correctly points to public/vanshpatel.png
     image:       SITE.logoImage,
     jobTitle:    SITE.role,
     description: PAGE_META.home.description,
     email:       SITE.email,
     telephone:   SITE.phone,
     address: {
-      '@type':         'PostalAddress',
-      addressLocality: 'Ahmedabad',
-      addressRegion:   'Gujarat',
-      addressCountry:  'India',
+      '@type':           'PostalAddress',
+      addressLocality:   'Ahmedabad',
+      addressRegion:     'Gujarat',
+      addressCountry:    'India',
     },
     sameAs: Object.values(SITE.social),
-    knowsAbout: [
-      'React.js', 'Node.js', 'JavaScript', 'HTML5', 'CSS3',
-      'MySQL', 'MongoDB', 'AWS', 'Git', 'REST APIs',
-    ],
+    knowsAbout: ['React.js', 'Node.js', 'JavaScript', 'HTML5', 'CSS3', 
+             'MySQL', 'MongoDB', 'AWS', 'Git', 'REST APIs'],
   };
 
   /* ── Breadcrumb ── */
@@ -72,11 +68,7 @@ const SEO = ({
       }
     : null;
 
-  const schemas = [
-    personSchema,
-    breadcrumb,
-    ...(Array.isArray(schema) ? schema : schema ? [schema] : []),
-  ].filter(Boolean);
+  const schemas = [personSchema, breadcrumb, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])].filter(Boolean);
 
   return (
     <Helmet>
@@ -93,16 +85,16 @@ const SEO = ({
       <link rel="canonical" href={_canonical} />
 
       {/* ── Open Graph ── */}
-      <meta property="og:type"         content={_ogType} />
-      <meta property="og:url"          content={_canonical} />
-      <meta property="og:title"        content={_title} />
-      <meta property="og:description"  content={_desc} />
-      <meta property="og:image"        content={_ogImage} />
-      <meta property="og:image:alt"    content={`${SITE.name} – ${SITE.role}`} />
+      <meta property="og:type"        content={_ogType} />
+      <meta property="og:url"         content={_canonical} />
+      <meta property="og:title"       content={_title} />
+      <meta property="og:description" content={_desc} />
+      <meta property="og:image"       content={_ogImage} />
+      <meta property="og:image:alt"   content={`${SITE.name} – ${SITE.role}`} />
       <meta property="og:image:width"  content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name"    content={`${SITE.name} Portfolio`} />
-      <meta property="og:locale"       content="en_US" />
+      <meta property="og:site_name"   content={`${SITE.name} Portfolio`} />
+      <meta property="og:locale"      content="en_US" />
       {_ogType === 'profile' && (
         <>
           <meta property="profile:first_name" content="Vansh" />

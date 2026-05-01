@@ -2,8 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Briefcase, Code2, Users } from 'lucide-react';
-// ✅ FIX: Removed `import vanshpatel from '../image/vanshpatel.png'`
-//         Image is now served from public/vanshpatel.png — no bundling, real public URL
+import vanshpatel from '../image/vanshpatel.png';
 import SEO from '../component/SEO';
 import { SITE } from '../config/seo';
 
@@ -39,7 +38,6 @@ const AboutPage = () => {
     '@type': 'Person',
     name: 'Vansh Patel',
     url: 'https://www.vanshpatel.in',
-    // ✅ FIX: Correct public URL — matches actual file in public/vanshpatel.png
     image: 'https://www.vanshpatel.in/vanshpatel.png',
     jobTitle: 'Full Stack Developer',
     description: 'Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and modern JavaScript.',
@@ -137,20 +135,15 @@ const AboutPage = () => {
               className="relative"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                {/*
-                  ✅ FIX: src="/vanshpatel.png" — served directly from public/
-                  This means the URL is exactly https://www.vanshpatel.in/vanshpatel.png
-                  which matches the schema image URL — Google can now find and index it.
-                */}
-                <img
-                  src="/vanshpatel.png"
-                  alt="Vansh Patel - Full Stack Developer from Ahmedabad"
-                  title="Vansh Patel – Full Stack Developer"
-                  className="w-full h-auto"
-                  loading="eager"
-                  width="600"
-                  height="600"
-                />
+                  <img
+                    src={vanshpatel}
+                    alt="Vansh Patel - Full Stack Developer from Ahmedabad"
+                    title="Vansh Patel – Full Stack Developer"
+                    className="w-full h-auto"
+                    loading="eager"
+                    width="600"
+                    height="600"
+                  />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
               </div>
             </motion.div>

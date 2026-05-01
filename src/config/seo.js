@@ -23,10 +23,10 @@ export const SITE = {
     twitter:  'https://twitter.com/vanshpatel',
   },
 
-  // ✅ FIX: All lowercase filename — must match public/vanshpatel.png exactly
-  ogImage:      'https://www.vanshpatel.in/vanshpatel.png',
-  twitterImage: 'https://www.vanshpatel.in/vanshpatel.png',
-  logoImage:    'https://www.vanshpatel.in/vanshpatel.png',
+  // ✅ VanshPatel.png — સૌ જગ્યાએ same image
+  ogImage:      'https://www.vanshpatel.in/VanshPatel.png',
+  twitterImage: 'https://www.vanshpatel.in/VanshPatel.png',
+  logoImage:    'https://www.vanshpatel.in/VanshPatel.png',
 
   themeColor:   '#2563eb',
   googleVerify: '5xpYf9seCnaC4Hb4ep3OG28kyajDwYjH73axtF5UpBY',
