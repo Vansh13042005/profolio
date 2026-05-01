@@ -23,7 +23,7 @@ const getIconUrl = (value) => {
   if (!value) return null;
   const variant = ICON_VARIANT[value];
   if (variant) {
-    const [name, v] = variant.split('-');
+    const [name] = variant.split('-');
     return `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${variant}.svg`;
   }
   return deviconUrl(value);
