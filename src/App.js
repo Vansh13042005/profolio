@@ -9,7 +9,6 @@ import Skills from './pages/Skills';
 import Contact from './pages/ContactSection';
 import ResumePage from './pages/ResumePage';
 import PortfolioSection from './pages/PortfolioSection';
-// import Resume if you have file
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -28,7 +27,6 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="skills" element={<Skills />} />
         <Route path="portfolio" element={<PortfolioSection />} />
-        {/* <Route path="resume" element={<Resume />} /> */}
         <Route path="contact" element={<Contact />} />
         <Route path='resume' element={<ResumePage />} />
       </Route>
