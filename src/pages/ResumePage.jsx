@@ -1,46 +1,51 @@
 // src/pages/ResumePage.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Calendar, Briefcase, GraduationCap } from 'lucide-react';
 import SEO from '../component/SEO';
 import { SITE } from '../config/seo';
 import vanshpatel from '../image/VanshPatel_CV (1).pdf'
-const ResumePage = () => {
-  const experiences = [
-    {
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Solutions Inc.',
-      period: '2021 – Present',
-      description: 'Leading development of enterprise web applications, mentoring junior developers, and implementing best practices.',
-    },
-    {
-      title: 'Web Developer',
-      company: 'Digital Agency Co.',
-      period: '2018 – 2021',
-      description: 'Developed and maintained client websites, created custom WordPress themes, and optimised performance.',
-    },
-    {
-      title: 'Junior Developer',
-      company: 'Startup Hub',
-      period: '2016 – 2018',
-      description: 'Assisted in building web applications, fixed bugs, and implemented responsive designs.',
-    },
-  ];
 
-  const education = [
-    {
-      degree: 'Master of Computer Applications',
-      institution: 'Gujarat University',
-      period: '2014 – 2016',
-      description: 'Specialised in Web Technologies and Database Management',
-    },
-    {
-      degree: 'Bachelor of Computer Science',
-      institution: 'Gujarat University',
-      period: '2011 – 2014',
-      description: 'Foundation in programming, algorithms, and software development',
-    },
-  ];
+const ResumePage = () => {
+  const [experiences, setExperiences] = useState([]);
+  const [education, setEducation] = useState([]);
+  useEffect(() => {
+    fetch('https://profolionode.vanshpatel.in/api/experience')
+      .then(res => res.json())
+      .then(json => {
+        const unique = json.data.filter((exp, index, self) =>
+          index === self.findIndex(e => e.id === exp.id)
+        );
+        const mapped = unique.map((exp) => ({
+          title: exp.role,
+          company: exp.company,
+          period: exp.current
+            ? `${new Date(exp.start_date).getFullYear()} – Present`
+            : `${new Date(exp.start_date).getFullYear()} – ${new Date(exp.end_date).getFullYear()}`,
+          description: exp.description,
+        }));
+        setExperiences(mapped);
+      })
+      .catch(err => console.error('Failed to fetch experience:', err));
+  }, []);
+
+  useEffect(() => {
+  fetch('https://profolionode.vanshpatel.in/api/education')
+    .then(res => res.json())
+    .then(json => {
+      const mapped = json.data.map((edu) => ({
+        degree: edu.degree,
+        institution: edu.institution,
+        period: edu.end_date
+          ? `${new Date(edu.start_date).getFullYear()} – ${new Date(edu.end_date).getFullYear()}`
+          : `${new Date(edu.start_date).getFullYear()} – Present`,
+        description: edu.description,
+      }));
+
+      setEducation(mapped);
+    })
+    .catch(err => console.error('Failed to fetch education:', err));
+}, []);
 
   const certifications = [
     'AWS Certified Developer',
@@ -49,7 +54,6 @@ const ResumePage = () => {
     'Full Stack Web Development Bootcamp',
   ];
 
-  /* ── JSON-LD ── */
   const resumeSchema = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
