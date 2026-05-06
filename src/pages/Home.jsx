@@ -1,11 +1,12 @@
 // src/pages/HomePage.jsx
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Code2, Database, Layout, Server, ExternalLink } from 'lucide-react';
+import { ArrowDown, Code2, Database, Layout, Server, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
 import Typewriter from 'typewriter-effect';
 import { Link } from 'react-router-dom';
 import SEO from '../component/SEO';
 import { SITE } from '../config/seo';
+import vanshpatel from '../image/vanshpatel.png'; // ✅ Same image as AboutPage
 
 const API = "https://profolionode.vanshpatel.in/api/projects";
 
@@ -26,7 +27,7 @@ const HomePage = () => {
           live: p.link || '#',
         }));
 
-        setFeaturedProjects(items.slice(0, 3)); // ✅ Sirf pehle 3
+        setFeaturedProjects(items.slice(0, 3));
       } catch (err) {
         console.error("Failed to fetch projects:", err);
       } finally {
@@ -158,6 +159,124 @@ const HomePage = () => {
         </motion.div>
       </section>
 
+      {/* ── About Me Preview (NEW SECTION) ── */}
+      <section className="py-20 bg-white dark:bg-slate-900" aria-label="About Me Preview">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+
+            {/* Photo */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={vanshpatel}
+                  alt="Vansh Patel - Full Stack Developer from Ahmedabad"
+                  title="Vansh Patel – Full Stack Developer"
+                  className="w-full h-auto"
+                  loading="lazy"
+                  width="600"
+                  height="600"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
+              </div>
+            </motion.div>
+
+            {/* Info */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-2">{SITE.name}</h2>
+              <p className="text-xl text-blue-600 dark:text-blue-400 mb-6">
+                Full Stack Developer | React.js &amp; Node.js Specialist
+              </p>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                Passionate Full Stack Developer specialising in{' '}
+                <strong className="text-blue-600">React.js</strong>,{' '}
+                <strong className="text-blue-600">Node.js</strong>, and{' '}
+                <strong className="text-blue-600">modern JavaScript</strong>.
+                I build responsive, high-performance web applications and REST APIs,
+                delivering seamless user experiences. Currently working at{' '}
+                <strong className="text-blue-600">Purvsoft Technologies</strong>,
+                Ahmedabad. BCA graduate from Silver Oak University with CGPA 8.50.
+              </p>
+
+              {/* Contact Details */}
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    <Mail size={15} className="text-blue-600" />
+                    {SITE.email}
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
+                  <a
+                    href={`tel:${SITE.phone}`}
+                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    <Phone size={15} className="text-blue-600" />
+                    {SITE.phone}
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
+                  <span className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                    <MapPin size={15} className="text-blue-600" />
+                    {SITE.location}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
+                  <a
+                    href={SITE.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    <span>🔗</span>
+                    linkedin.com/in/patelvansh13
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
+                  <a
+                    href={SITE.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    <span>💻</span>
+                    github.com/Vansh13042005
+                  </a>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <Link to="/about">
+                <motion.button
+                  whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                >
+                  Know More About Me
+                </motion.button>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Services Preview ── */}
       <section className="py-20 bg-slate-50 dark:bg-slate-800" aria-label="Services Section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -207,7 +326,6 @@ const HomePage = () => {
             <p className="text-slate-600 dark:text-slate-400 mt-4">Some of my best work</p>
           </motion.div>
 
-          {/* ✅ Loading Skeleton */}
           {loadingProjects ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3].map((i) => (
@@ -237,7 +355,6 @@ const HomePage = () => {
                   whileHover={{ y: -6 }}
                   className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col"
                 >
-                  {/* Image */}
                   <div className="relative h-52 overflow-hidden group">
                     {project.image ? (
                       <img
@@ -258,7 +375,6 @@ const HomePage = () => {
                     )}
                   </div>
 
-                  {/* Content */}
                   <div className="p-6 flex flex-col flex-1">
                     <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">
                       {project.title}
@@ -267,7 +383,6 @@ const HomePage = () => {
                       {project.description}
                     </p>
 
-                    {/* Tech Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.techStack.slice(0, 3).map((tech, i) => (
                         <span
@@ -279,7 +394,6 @@ const HomePage = () => {
                       ))}
                     </div>
 
-                    {/* Links */}
                     <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center gap-6">
                       {project.github ? (
                         <a

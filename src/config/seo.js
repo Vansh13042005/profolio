@@ -23,10 +23,10 @@ export const SITE = {
     twitter:  'https://twitter.com/vanshpatel',
   },
 
-  // ✅ VanshPatel.png — સૌ જગ્યાએ same image
-  ogImage:      'https://www.vanshpatel.in/VanshPatel.png',
-  twitterImage: 'https://www.vanshpatel.in/VanshPatel.png',
-  logoImage:    'https://www.vanshpatel.in/VanshPatel.png',
+  // ✅ Public image URLs — Google crawler inhe index karega
+  ogImage:      'https://www.vanshpatel.in/vanshpatel.png',
+  twitterImage: 'https://www.vanshpatel.in/vanshpatel.png',
+  logoImage:    'https://www.vanshpatel.in/vanshpatel.png',
 
   themeColor:   '#2563eb',
   googleVerify: '5xpYf9seCnaC4Hb4ep3OG28kyajDwYjH73axtF5UpBY',
@@ -36,43 +36,43 @@ export const SITE = {
 
 export const PAGE_META = {
   home: {
-    title:       'Vansh Patel | Full Stack Developer – React & Node.js Expert',
+    title:       'Vansh Patel | Full Stack Developer – React & Node.js Expert Ahmedabad',
     description: 'Vansh Patel is a Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and JavaScript. Available for work.',
-    keywords:    'Vansh Patel, Full Stack Developer, React Developer, Node.js Developer, JavaScript Developer Ahmedabad, Frontend Developer India, React.js Expert',
+    keywords:    'Vansh Patel, Vansh Patel developer, Full Stack Developer, React Developer Ahmedabad, Node.js Developer, JavaScript Developer Ahmedabad, Frontend Developer India, React.js Expert',
     canonical:   SITE.url,
     ogType:      'website',
   },
   about: {
-    title:       'About Vansh Patel | React & Node.js Full Stack Developer',
-    description: 'Learn about Vansh Patel – a Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and modern JavaScript with hands-on project experience.',
-    keywords:    'Vansh Patel about, Full Stack Developer Ahmedabad, React Developer, Node.js Developer, BCA Graduate Silver Oak University',
+    title:       'Vansh Patel | About – React & Node.js Full Stack Developer Ahmedabad',
+    description: 'Learn about Vansh Patel – Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and modern JavaScript. BCA graduate, Silver Oak University.',
+    keywords:    'Vansh Patel about, Vansh Patel Ahmedabad, Full Stack Developer Ahmedabad, React Developer, Node.js Developer, BCA Graduate Silver Oak University',
     canonical:   `${SITE.url}/about`,
     ogType:      'profile',
   },
   skills: {
-    title:       'Skills | Vansh Patel – React, Node.js, JavaScript',
+    title:       'Vansh Patel Skills | React, Node.js, JavaScript Expert',
     description: 'Technical skills of Vansh Patel: React.js, Node.js, JavaScript (ES6), HTML5, CSS3, MySQL, MongoDB, AWS, Git and more.',
     keywords:    'Vansh Patel skills, React developer skills, Node.js expertise, JavaScript developer, MySQL, MongoDB, AWS',
     canonical:   `${SITE.url}/skills`,
     ogType:      'website',
   },
   portfolio: {
-    title:       `Portfolio | ${SITE.name} – Web Development Projects`,
-    description: `Browse ${SITE.name}'s portfolio of web development projects including React.js apps, Node.js backends, REST APIs, and full stack solutions.`,
+    title:       `Vansh Patel Portfolio | Web Development Projects`,
+    description: `Browse Vansh Patel's portfolio of web development projects including React.js apps, Node.js backends, REST APIs, and full stack solutions.`,
     keywords:    'Vansh Patel portfolio, React.js projects, Node.js projects, Full Stack developer portfolio, JavaScript developer, web development portfolio Ahmedabad',
     canonical:   `${SITE.url}/portfolio`,
     ogType:      'website',
   },
   resume: {
-    title:       `Resume | ${SITE.name} – Full Stack Developer`,
-    description: `View the professional resume of ${SITE.name} – Full Stack Developer with experience in React.js, Node.js, JavaScript, and web development. Based in Ahmedabad, India.`,
+    title:       `Vansh Patel Resume | Full Stack Developer Ahmedabad`,
+    description: `View the professional resume of Vansh Patel – Full Stack Developer with experience in React.js, Node.js, JavaScript, and web development. Based in Ahmedabad, India.`,
     keywords:    'Vansh Patel resume, Full Stack Developer resume, React.js developer CV, Node.js developer resume, JavaScript developer Ahmedabad',
     canonical:   `${SITE.url}/resume`,
     ogType:      'website',
   },
   contact: {
-    title:       `Contact ${SITE.name} | Hire a Full Stack Developer`,
-    description: `Get in touch with ${SITE.name} for React.js, Node.js, or full stack projects. Based in Ahmedabad, India. Available for work worldwide.`,
+    title:       `Contact Vansh Patel | Hire Full Stack Developer Ahmedabad`,
+    description: `Get in touch with Vansh Patel for React.js, Node.js, or full stack projects. Based in Ahmedabad, India. Available for work worldwide.`,
     keywords:    'contact Vansh Patel, hire React developer, hire Node.js developer, Full Stack developer for hire, freelance web developer India',
     canonical:   `${SITE.url}/contact`,
     ogType:      'website',

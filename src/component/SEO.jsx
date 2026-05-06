@@ -1,21 +1,10 @@
 // ============================================================
-//  src/components/seo/SEO.jsx
-//  Drop this one component on every page – no more copy-paste
-//  Usage: <SEO page="home" />   OR   <SEO {...customMeta} />
+//  src/component/SEO.jsx
 // ============================================================
 
 import { Helmet } from 'react-helmet-async';
 import { SITE, PAGE_META } from '../config/seo';
 
-/**
- * @param {string}  page       - key of PAGE_META ("home"|"about"|etc.)
- * @param {string}  [title]    - override title
- * @param {string}  [description] - override description
- * @param {string}  [canonical]   - override canonical URL
- * @param {string}  [ogType]      - override og:type
- * @param {string}  [ogImage]     - override og:image
- * @param {object}  [schema]      - extra JSON-LD object (or array)
- */
 const SEO = ({
   page,
   title,
@@ -34,13 +23,19 @@ const SEO = ({
   const _ogImage     = ogImage     || SITE.ogImage;
   const _keywords    = meta.keywords || '';
 
-  /* ── Common person schema shared across all pages ── */
+  // ── Person schema (har page pe) ──
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name:        SITE.name,
+    name:        'Vansh Patel',
     url:         SITE.url,
-    image:       SITE.logoImage,
+    image: {
+      '@type':      'ImageObject',
+      url:          SITE.ogImage,                      // ✅ Google image index ke liye
+      width:        '800',
+      height:       '800',
+      caption:      'Vansh Patel – Full Stack Developer from Ahmedabad',
+    },
     jobTitle:    SITE.role,
     description: PAGE_META.home.description,
     email:       SITE.email,
@@ -49,26 +44,59 @@ const SEO = ({
       '@type':           'PostalAddress',
       addressLocality:   'Ahmedabad',
       addressRegion:     'Gujarat',
-      addressCountry:    'India',
+      addressCountry:    'IN',
     },
-    sameAs: Object.values(SITE.social),
-    knowsAbout: ['React.js', 'Node.js', 'JavaScript', 'HTML5', 'CSS3', 
-             'MySQL', 'MongoDB', 'AWS', 'Git', 'REST APIs'],
+    sameAs: [
+      SITE.social.linkedin,
+      SITE.social.github,
+    ],
+    knowsAbout: ['React.js', 'Node.js', 'JavaScript', 'HTML5', 'CSS3',
+                 'MySQL', 'MongoDB', 'AWS', 'Git', 'REST APIs'],
   };
 
-  /* ── Breadcrumb ── */
+  // ── WebPage schema ──
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type':    'WebPage',
+    name:       _title,
+    url:        _canonical,
+    description: _desc,
+    inLanguage: 'en',
+    isPartOf: {
+      '@type': 'WebSite',
+      name:    `${SITE.name} Portfolio`,
+      url:     SITE.url,
+    },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url:     _ogImage,
+      caption: `${SITE.name} – ${SITE.role}`,
+    },
+    author: {
+      '@type': 'Person',
+      name:    SITE.name,
+      url:     SITE.url,
+    },
+  };
+
+  // ── Breadcrumb ──
   const breadcrumb = _canonical !== SITE.url
     ? {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+          { '@type': 'ListItem', position: 1, name: 'Home',           item: SITE.url },
           { '@type': 'ListItem', position: 2, name: meta.title || _title, item: _canonical },
         ],
       }
     : null;
 
-  const schemas = [personSchema, breadcrumb, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])].filter(Boolean);
+  const schemas = [
+    personSchema,
+    webPageSchema,
+    breadcrumb,
+    ...(Array.isArray(schema) ? schema : schema ? [schema] : []),
+  ].filter(Boolean);
 
   return (
     <Helmet>
@@ -90,24 +118,28 @@ const SEO = ({
       <meta property="og:title"       content={_title} />
       <meta property="og:description" content={_desc} />
       <meta property="og:image"       content={_ogImage} />
-      <meta property="og:image:alt"   content={`${SITE.name} – ${SITE.role}`} />
-      <meta property="og:image:width"  content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:site_name"   content={`${SITE.name} Portfolio`} />
+      <meta property="og:image:secure_url" content={_ogImage} />
+      <meta property="og:image:alt"   content={`Vansh Patel – Full Stack Developer Ahmedabad`} />
+      <meta property="og:image:width"  content="800" />
+      <meta property="og:image:height" content="800" />
+      <meta property="og:image:type"   content="image/png" />
+      <meta property="og:site_name"   content={`${SITE.name} – Full Stack Developer`} />
       <meta property="og:locale"      content="en_US" />
       {_ogType === 'profile' && (
         <>
           <meta property="profile:first_name" content="Vansh" />
           <meta property="profile:last_name"  content="Patel" />
+          <meta property="profile:username"   content="patelvansh13" />
         </>
       )}
 
-      {/* ── Twitter ── */}
+      {/* ── Twitter Card ── */}
       <meta name="twitter:card"        content="summary_large_image" />
       <meta name="twitter:url"         content={_canonical} />
       <meta name="twitter:title"       content={_title} />
       <meta name="twitter:description" content={_desc} />
       <meta name="twitter:image"       content={SITE.twitterImage} />
+      <meta name="twitter:image:alt"   content={`Vansh Patel – Full Stack Developer`} />
 
       {/* ── Geo ── */}
       <meta name="geo.region"    content={SITE.geo.region} />

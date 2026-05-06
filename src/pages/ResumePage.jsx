@@ -9,6 +9,7 @@ import vanshpatel from '../image/VanshPatel_CV (1).pdf'
 const ResumePage = () => {
   const [experiences, setExperiences] = useState([]);
   const [education, setEducation] = useState([]);
+
   useEffect(() => {
     fetch('https://profolionode.vanshpatel.in/api/experience')
       .then(res => res.json())
@@ -30,22 +31,21 @@ const ResumePage = () => {
   }, []);
 
   useEffect(() => {
-  fetch('https://profolionode.vanshpatel.in/api/education')
-    .then(res => res.json())
-    .then(json => {
-      const mapped = json.data.map((edu) => ({
-        degree: edu.degree,
-        institution: edu.institution,
-        period: edu.end_date
-          ? `${new Date(edu.start_date).getFullYear()} – ${new Date(edu.end_date).getFullYear()}`
-          : `${new Date(edu.start_date).getFullYear()} – Present`,
-        description: edu.description,
-      }));
-
-      setEducation(mapped);
-    })
-    .catch(err => console.error('Failed to fetch education:', err));
-}, []);
+    fetch('https://profolionode.vanshpatel.in/api/education')
+      .then(res => res.json())
+      .then(json => {
+        const mapped = json.data.map((edu) => ({
+          degree: edu.degree,
+          institution: edu.institution,
+          period: edu.end_date
+            ? `${new Date(edu.start_date).getFullYear()} – ${new Date(edu.end_date).getFullYear()}`
+            : `${new Date(edu.start_date).getFullYear()} – Present`,
+          description: edu.description,
+        }));
+        setEducation(mapped);
+      })
+      .catch(err => console.error('Failed to fetch education:', err));
+  }, []);
 
   const certifications = [
     'AWS Certified Developer',
@@ -84,10 +84,17 @@ const ResumePage = () => {
         aria-label="Resume Hero Section"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
             <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Resume</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">My professional journey and qualifications</p>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
+              My professional journey and qualifications
+            </p>
             <motion.a
               href={vanshpatel}
               download
@@ -102,7 +109,7 @@ const ResumePage = () => {
       </section>
 
       {/* ── Experience & Education ── */}
-      <section className="py-20 bg-white dark:bg-slate-900" aria-label="Work Experience and Education">
+      <section className="py-20 bg-white dark:bg-slate-900 overflow-hidden" aria-label="Work Experience and Education">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
 
@@ -112,9 +119,10 @@ const ResumePage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              className="min-w-0"
             >
               <div className="flex items-center gap-3 mb-8">
-                <Briefcase className="w-8 h-8 text-blue-600" aria-hidden="true" />
+                <Briefcase className="w-8 h-8 text-blue-600 flex-shrink-0" aria-hidden="true" />
                 <h2 className="text-2xl md:text-3xl font-bold gradient-text">Work Experience</h2>
               </div>
               <div className="space-y-8">
@@ -125,17 +133,18 @@ const ResumePage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative pl-8 border-l-2 border-blue-600"
+                    className="relative pl-6 border-l-2 border-blue-600 min-w-0"
                   >
-                    <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-600 rounded-full" />
-                    <div className="mb-2 flex flex-wrap justify-between items-start gap-2">
-                      <h3 className="text-xl font-semibold">{exp.title}</h3>
-                      <span className="text-sm text-blue-600 dark:text-blue-400 flex items-center gap-1">
-                        <Calendar size={14} aria-hidden="true" /> {exp.period}
+                    <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-600 rounded-full flex-shrink-0" />
+                    <div className="mb-1 min-w-0">
+                      <h3 className="text-lg font-semibold break-words leading-snug">{exp.title}</h3>
+                      <span className="text-sm text-blue-600 dark:text-blue-400 flex items-center gap-1 mt-1">
+                        <Calendar size={13} aria-hidden="true" className="flex-shrink-0" />
+                        <span>{exp.period}</span>
                       </span>
                     </div>
-                    <p className="text-slate-600 dark:text-slate-400 font-medium mb-2">{exp.company}</p>
-                    <p className="text-slate-500 dark:text-slate-500">{exp.description}</p>
+                    <p className="text-slate-600 dark:text-slate-400 font-medium mb-2 break-words text-sm">{exp.company}</p>
+                    <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed break-words">{exp.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -147,9 +156,10 @@ const ResumePage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              className="min-w-0"
             >
               <div className="flex items-center gap-3 mb-8">
-                <GraduationCap className="w-8 h-8 text-purple-600" aria-hidden="true" />
+                <GraduationCap className="w-8 h-8 text-purple-600 flex-shrink-0" aria-hidden="true" />
                 <h2 className="text-2xl md:text-3xl font-bold gradient-text">Education</h2>
               </div>
               <div className="space-y-8">
@@ -160,21 +170,23 @@ const ResumePage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="relative pl-8 border-l-2 border-purple-600"
+                    className="relative pl-6 border-l-2 border-purple-600 min-w-0"
                   >
-                    <div className="absolute -left-2 top-0 w-4 h-4 bg-purple-600 rounded-full" />
-                    <div className="mb-2 flex flex-wrap justify-between items-start gap-2">
-                      <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                      <span className="text-sm text-purple-600 dark:text-purple-400 flex items-center gap-1">
-                        <Calendar size={14} aria-hidden="true" /> {edu.period}
+                    <div className="absolute -left-2 top-0 w-4 h-4 bg-purple-600 rounded-full flex-shrink-0" />
+                    <div className="mb-1 min-w-0">
+                      <h3 className="text-lg font-semibold break-words leading-snug">{edu.degree}</h3>
+                      <span className="text-sm text-purple-600 dark:text-purple-400 flex items-center gap-1 mt-1">
+                        <Calendar size={13} aria-hidden="true" className="flex-shrink-0" />
+                        <span>{edu.period}</span>
                       </span>
                     </div>
-                    <p className="text-slate-600 dark:text-slate-400 font-medium mb-2">{edu.institution}</p>
-                    <p className="text-slate-500 dark:text-slate-500">{edu.description}</p>
+                    <p className="text-slate-600 dark:text-slate-400 font-medium mb-2 break-words text-sm">{edu.institution}</p>
+                    <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed break-words">{edu.description}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
@@ -193,7 +205,7 @@ const ResumePage = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
@@ -207,7 +219,7 @@ const ResumePage = () => {
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <GraduationCap className="w-6 h-6 text-blue-600" aria-hidden="true" />
                 </div>
-                <p className="font-medium">{cert}</p>
+                <p className="font-medium text-sm">{cert}</p>
               </motion.div>
             ))}
           </div>
