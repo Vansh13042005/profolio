@@ -1,7 +1,7 @@
 export default function FloatingSocial({
-  whatsapp = "917874369355",
-  linkedin = "https://linkedin.com/in/yourprofile",
-  instagram = "https://instagram.com/yourprofile",
+  whatsapp = "919023954043",
+  linkedin = "https://www.linkedin.com/in/patelvansh13/",
+  instagram = "https://www.instagram.com/vanshpatel_.13/",
 }) {
   const links = [
     {
