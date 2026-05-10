@@ -6,53 +6,88 @@ import Typewriter from 'typewriter-effect';
 import { Link } from 'react-router-dom';
 import SEO from '../component/SEO';
 import { SITE } from '../config/seo';
-import vanshpatel from '../image/vanshpatel.png'; // ✅ Same image as AboutPage
+import vanshpatel from '../image/vanshpatel.png';
 
-const API = "https://profolionode.vanshpatel.in/api/projects";
+const API       = 'https://profolionode.vanshpatel.in/api/projects';
+const CACHE_KEY = 'home_featured_projects';
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+// ── Parse tech field (string / JSON / array) ──────────────────────────────
+const parseTech = (techValue) => {
+  if (!techValue) return [];
+  if (Array.isArray(techValue)) return techValue;
+  try {
+    const parsed = JSON.parse(techValue);
+    if (Array.isArray(parsed)) return parsed;
+  } catch {}
+  return techValue.replace(/[{}"]/g, '').split(',').map((t) => t.trim()).filter(Boolean);
+};
+
+// ── Skeleton card ─────────────────────────────────────────────────────────
+const SkeletonProjectCard = () => (
+  <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg animate-pulse">
+    <div className="h-52 bg-slate-200 dark:bg-slate-700" />
+    <div className="p-6 space-y-3">
+      <div className="h-5 bg-slate-200 dark:bg-slate-700 rounded w-2/3" />
+      <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-full" />
+      <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-4/5" />
+      <div className="flex gap-2 pt-2">
+        <div className="h-6 w-16 bg-slate-200 dark:bg-slate-700 rounded-full" />
+        <div className="h-6 w-16 bg-slate-200 dark:bg-slate-700 rounded-full" />
+      </div>
+    </div>
+  </div>
+);
 
 const HomePage = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
   const [loadingProjects, setLoadingProjects]   = useState(true);
 
-  // ── Fetch top 3 projects ──
+  // ── Fetch top 3 projects with cache ──────────────────────────────────────
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res  = await fetch(API);
-        const data = await res.json();
+    const controller = new AbortController();
 
-        const items = (data.data || []).map((p) => ({
+    const fetchProjects = async () => {
+      // 1️⃣ Instant load from cache
+      try {
+        const cached = sessionStorage.getItem(CACHE_KEY);
+        if (cached) {
+          const { data, timestamp } = JSON.parse(cached);
+          if (Date.now() - timestamp < CACHE_TTL) {
+            setFeaturedProjects(data);
+            setLoadingProjects(false);
+            return; // no API call needed
+          }
+        }
+      } catch (_) {}
+
+      // 2️⃣ Fetch from API
+      try {
+        const res  = await fetch(API, { signal: controller.signal });
+        const json = await res.json();
+
+        const items = (json.data || json || []).slice(0, 3).map((p) => ({
           ...p,
           techStack: parseTech(p.tech),
           live: p.link || '#',
         }));
 
-        setFeaturedProjects(items.slice(0, 3));
+        setFeaturedProjects(items);
+
+        // Save to cache
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data: items, timestamp: Date.now() }));
       } catch (err) {
-        console.error("Failed to fetch projects:", err);
+        if (err.name !== 'AbortError') console.error('Failed to fetch projects:', err);
       } finally {
         setLoadingProjects(false);
       }
     };
+
     fetchProjects();
+    return () => controller.abort();
   }, []);
 
-  // ── Parse tech ──
-  const parseTech = (techValue) => {
-    if (!techValue) return [];
-    if (Array.isArray(techValue)) return techValue;
-    try {
-      const parsed = JSON.parse(techValue);
-      if (Array.isArray(parsed)) return parsed;
-    } catch {}
-    return techValue
-      .replace(/[{}"]/g, '')
-      .split(',')
-      .map((t) => t.trim())
-      .filter(Boolean);
-  };
-
-  /* ── JSON-LD ── */
+  // ── JSON-LD ───────────────────────────────────────────────────────────────
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -71,13 +106,7 @@ const HomePage = () => {
     '@type': 'Service',
     name: 'Full Stack Development Services',
     provider: { '@type': 'Person', name: SITE.name, url: SITE.url },
-    serviceType: [
-      'React.js Development',
-      'Node.js & Express API Development',
-      'Full Stack Web Applications',
-      'REST API Development',
-      'Database Design & Development',
-    ],
+    serviceType: ['React.js Development', 'Node.js & Express API Development', 'Full Stack Web Applications', 'REST API Development', 'Database Design & Development'],
     areaServed: 'Worldwide',
     description: 'Professional full stack development services including React.js frontend, Node.js backend, REST APIs, and database design.',
   };
@@ -86,7 +115,7 @@ const HomePage = () => {
     <>
       <SEO page="home" schema={[websiteSchema, serviceSchema]} />
 
-      {/* ── Hero ── */}
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section
         className="min-h-[calc(100vh-4rem)] flex items-center justify-center relative overflow-hidden"
         aria-label="Hero Section"
@@ -94,7 +123,8 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 animate-gradient bg-[length:400%_400%]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -159,12 +189,11 @@ const HomePage = () => {
         </motion.div>
       </section>
 
-      {/* ── About Me Preview (NEW SECTION) ── */}
+      {/* ── About Me Preview ─────────────────────────────────────────────── */}
       <section className="py-20 bg-white dark:bg-slate-900" aria-label="About Me Preview">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
 
-            {/* Photo */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -186,7 +215,6 @@ const HomePage = () => {
               </div>
             </motion.div>
 
-            {/* Info */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -208,62 +236,41 @@ const HomePage = () => {
                 Ahmedabad. BCA graduate from Silver Oak University with CGPA 8.50.
               </p>
 
-              {/* Contact Details */}
               <div className="space-y-3 mb-8">
+                {[
+                  { icon: Mail,   href: `mailto:${SITE.email}`,        label: SITE.email },
+                  { icon: Phone,  href: `tel:${SITE.phone}`,           label: SITE.phone },
+                  { icon: MapPin, href: null,                           label: SITE.location },
+                ].map(({ icon: Icon, href, label }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
+                    {href ? (
+                      <a href={href} className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                        <Icon size={15} className="text-blue-600" />{label}
+                      </a>
+                    ) : (
+                      <span className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                        <Icon size={15} className="text-blue-600" />{label}
+                      </span>
+                    )}
+                  </div>
+                ))}
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
-                  <a
-                    href={`mailto:${SITE.email}`}
-                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    <Mail size={15} className="text-blue-600" />
-                    {SITE.email}
+                  <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                    <span>🔗</span> linkedin.com/in/patelvansh13
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
-                  <a
-                    href={`tel:${SITE.phone}`}
-                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    <Phone size={15} className="text-blue-600" />
-                    {SITE.phone}
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
-                  <span className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                    <MapPin size={15} className="text-blue-600" />
-                    {SITE.location}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
-                  <a
-                    href={SITE.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    <span>🔗</span>
-                    linkedin.com/in/patelvansh13
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full flex-shrink-0" />
-                  <a
-                    href={SITE.social.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    <span>💻</span>
-                    github.com/Vansh13042005
+                  <a href={SITE.social.github} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-600 transition-colors">
+                    <span>💻</span> github.com/Vansh13042005
                   </a>
                 </div>
               </div>
 
-              {/* CTA Button */}
               <Link to="/about">
                 <motion.button
                   whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
@@ -277,12 +284,12 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ── Services Preview ── */}
+      {/* ── Services ─────────────────────────────────────────────────────── */}
       <section className="py-20 bg-slate-50 dark:bg-slate-800" aria-label="Services Section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }} viewport={{ once: true }}
+            transition={{ duration: 0.5 }} viewport={{ once: true }}
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">What I Do</h2>
@@ -313,12 +320,12 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ── Featured Projects ── */}
+      {/* ── Featured Projects ─────────────────────────────────────────────── */}
       <section className="py-20" aria-label="Featured Projects">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }} viewport={{ once: true }}
+            transition={{ duration: 0.5 }} viewport={{ once: true }}
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">Featured Projects</h2>
@@ -326,31 +333,22 @@ const HomePage = () => {
             <p className="text-slate-600 dark:text-slate-400 mt-4">Some of my best work</p>
           </motion.div>
 
-          {loadingProjects ? (
+          {/* Skeleton */}
+          {loadingProjects && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg animate-pulse">
-                  <div className="h-48 bg-slate-200 dark:bg-slate-700" />
-                  <div className="p-6 space-y-3">
-                    <div className="h-5 bg-slate-200 dark:bg-slate-700 rounded w-2/3" />
-                    <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-full" />
-                    <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-4/5" />
-                    <div className="flex gap-2 pt-2">
-                      <div className="h-6 w-16 bg-slate-200 dark:bg-slate-700 rounded" />
-                      <div className="h-6 w-16 bg-slate-200 dark:bg-slate-700 rounded" />
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {[1, 2, 3].map((i) => <SkeletonProjectCard key={i} />)}
             </div>
-          ) : (
+          )}
+
+          {/* Cards */}
+          {!loadingProjects && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.08 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -6 }}
                   className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col"
@@ -376,19 +374,12 @@ const HomePage = () => {
                   </div>
 
                   <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">
-                      {project.title}
-                    </h3>
-                    <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm line-clamp-2">
-                      {project.description}
-                    </p>
+                    <h3 className="text-xl font-bold mb-2 text-slate-900 dark:text-white">{project.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm line-clamp-2">{project.description}</p>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.techStack.slice(0, 3).map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full border border-slate-200 dark:border-slate-600"
-                        >
+                        <span key={i} className="px-3 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full border border-slate-200 dark:border-slate-600">
                           {tech}
                         </span>
                       ))}
@@ -396,27 +387,17 @@ const HomePage = () => {
 
                     <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center gap-6">
                       {project.github ? (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        >
+                        <a href={project.github} target="_blank" rel="noopener noreferrer"
+                          className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                           View Code
                         </a>
                       ) : (
-                        <span className="text-sm font-medium text-slate-300 dark:text-slate-600 cursor-not-allowed">
-                          View Code
-                        </span>
+                        <span className="text-sm font-medium text-slate-300 dark:text-slate-600 cursor-not-allowed">View Code</span>
                       )}
 
                       {project.live && project.live !== '#' ? (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        >
+                        <a href={project.live} target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                           <ExternalLink size={15} /> Live Demo
                         </a>
                       ) : (

@@ -6,6 +6,7 @@ import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
 import BackToTop from './BackToTop';
 import ScrollToTop from './ScrollToTop';
+import FloatingSocial from './FloatingSocial';
 
 const Layout = () => {
   return (
@@ -13,6 +14,11 @@ const Layout = () => {
       <ScrollToTop />
       <ScrollProgress />
       <Navbar />
+      <FloatingSocial                             
+        whatsapp="917874369355"
+        linkedin="https://linkedin.com/in/yourprofile"
+        instagram="https://instagram.com/yourprofile"
+      />
       <main className="pt-16">
         <Outlet />
       </main>
