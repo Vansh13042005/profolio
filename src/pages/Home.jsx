@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../component/SEO';
 import { SITE } from '../config/seo';
 import vanshpatel from '../image/vanshpatel.png';
-
+import Feedbackfrom from './Feedbackform';
 const API       = 'https://profolionode.vanshpatel.in/api/projects';
 const CACHE_KEY = 'home_featured_projects';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
@@ -424,6 +424,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      <Feedbackfrom />
     </>
   );
 };
