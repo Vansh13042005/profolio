@@ -21,9 +21,10 @@ const ResumePage = () => {
           title: exp.role,
           company: exp.company,
           period: exp.current
-            ? `${new Date(exp.start_date).getFullYear()} – Present`
-            : `${new Date(exp.start_date).getFullYear()} – ${new Date(exp.end_date).getFullYear()}`,
+            ? `${new Date(exp.start_date).toLocaleString('default', { month: 'long' })} ${new Date(exp.start_date).getFullYear()} – Present`
+            : `${new Date(exp.start_date).toLocaleString('default', { month: 'long' })} ${new Date(exp.start_date).getFullYear()} – ${new Date(exp.end_date).toLocaleString('default', { month: 'long' })} ${new Date(exp.end_date).getFullYear()}`,
           description: exp.description,
+          duration: exp.duration,
         }));
         setExperiences(mapped);
       })
@@ -38,8 +39,8 @@ const ResumePage = () => {
           degree: edu.degree,
           institution: edu.institution,
           period: edu.end_date
-            ? `${new Date(edu.start_date).getFullYear()} – ${new Date(edu.end_date).getFullYear()}`
-            : `${new Date(edu.start_date).getFullYear()} – Present`,
+            ? `${new Date(edu.start_date).toLocaleString('default', { month: 'long' })} ${new Date(edu.start_date).getFullYear()} – ${new Date(edu.end_date).toLocaleString('default', { month: 'long' })} ${new Date(edu.end_date).getFullYear()}`
+            : `${new Date(edu.start_date).toLocaleString('default', { month: 'long' })} ${new Date(edu.start_date).getFullYear()} – Present`,
           description: edu.description,
         }));
         setEducation(mapped);
@@ -137,7 +138,14 @@ const ResumePage = () => {
                   >
                     <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-600 rounded-full flex-shrink-0" />
                     <div className="mb-1 min-w-0">
-                      <h3 className="text-lg font-semibold break-words leading-snug">{exp.title}</h3>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-lg font-semibold break-words leading-snug">{exp.title}</h3>
+                        {exp.duration && (
+                          <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                            {exp.duration}
+                          </span>
+                        )}
+                      </div>
                       <span className="text-sm text-blue-600 dark:text-blue-400 flex items-center gap-1 mt-1">
                         <Calendar size={13} aria-hidden="true" className="flex-shrink-0" />
                         <span>{exp.period}</span>

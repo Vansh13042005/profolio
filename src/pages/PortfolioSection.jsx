@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Filter} from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { SITE } from '../config/seo'; // ✅ Import SITE so domain is never hardcoded
 
 const API = "https://profolionode.vanshpatel.in/api/projects";
 
@@ -63,9 +64,9 @@ const PortfolioSection = () => {
     "@type": "CollectionPage",
     "name": "Vansh Patel Portfolio - Web Development Projects",
     "description": "Portfolio of Vansh Patel showcasing React.js projects, full-stack web applications, and software development work.",
-    "url": "https://www.vanshpatel.dev/portfolio",
+    "url": `${SITE.url}/portfolio`,                         // ✅ was vanshpatel.dev
     "numberOfItems": totalProjects,
-    "provider": { "@type": "Person", "name": "Vansh Patel", "url": "https://www.vanshpatel.dev" },
+    "provider": { "@type": "Person", "name": "Vansh Patel", "url": SITE.url }, // ✅
     "itemListElement": portfolioItems.map((project, index) => ({
       "@type": "ListItem",
       "position": index + 1,
@@ -84,8 +85,8 @@ const PortfolioSection = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home",      "item": "https://www.vanshpatel.dev" },
-      { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.vanshpatel.dev/portfolio" }
+      { "@type": "ListItem", "position": 1, "name": "Home",      "item": SITE.url },               // ✅
+      { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": `${SITE.url}/portfolio` } // ✅
     ]
   };
 
@@ -93,7 +94,7 @@ const PortfolioSection = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Vansh Patel",
-    "url": "https://www.vanshpatel.dev",
+    "url": SITE.url,                                        // ✅ was vanshpatel.dev
     "jobTitle": "Full Stack Developer",
     "knowsAbout": ["React.js", "Node.js", "JavaScript", "Full Stack Development", "Web Applications"]
   };
@@ -108,25 +109,25 @@ const PortfolioSection = () => {
         <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author"      content="Vansh Patel" />
         <meta name="language"    content="English" />
-        <link rel="canonical"    href="https://www.vanshpatel.dev/portfolio" />
+        <link rel="canonical"    href={`${SITE.url}/portfolio`} />                {/* ✅ was vanshpatel.dev */}
         <meta property="og:type"         content="website" />
-        <meta property="og:url"          content="https://www.vanshpatel.dev/portfolio" />
+        <meta property="og:url"          content={`${SITE.url}/portfolio`} />     {/* ✅ */}
         <meta property="og:title"        content="Vansh Patel Portfolio | React & Full Stack Web Developer" />
         <meta property="og:description"  content="View my portfolio of React.js projects and full-stack web applications." />
-        <meta property="og:image"        content="https://www.vanshpatel.dev/og-portfolio.jpg" />
+        <meta property="og:image"        content={SITE.ogImage} />                {/* ✅ uses SITE.ogImage */}
         <meta property="og:image:alt"    content="Vansh Patel Portfolio" />
-        <meta property="og:image:width"  content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width"  content="800" />
+        <meta property="og:image:height" content="800" />
         <meta property="og:site_name"    content="Vansh Patel Portfolio" />
         <meta property="og:locale"       content="en_US" />
         <meta name="twitter:card"        content="summary_large_image" />
-        <meta name="twitter:url"         content="https://www.vanshpatel.dev/portfolio" />
+        <meta name="twitter:url"         content={`${SITE.url}/portfolio`} />     {/* ✅ */}
         <meta name="twitter:title"       content="Vansh Patel Portfolio | Web Developer" />
         <meta name="twitter:description" content="React.js and full-stack web development portfolio." />
-        <meta name="twitter:image"       content="https://www.vanshpatel.dev/twitter-portfolio.jpg" />
-        <meta name="geo.region"          content="IN-GJ" />
-        <meta name="geo.placename"       content="Ahmedabad, Gujarat, India" />
-        <meta name="theme-color"         content="#2563eb" />
+        <meta name="twitter:image"       content={SITE.twitterImage} />           {/* ✅ uses SITE.twitterImage */}
+        <meta name="geo.region"          content={SITE.geo.region} />
+        <meta name="geo.placename"       content={SITE.geo.placename} />
+        <meta name="theme-color"         content={SITE.themeColor} />
       </Helmet>
 
       <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
@@ -394,7 +395,7 @@ const PortfolioSection = () => {
                   Hire Me for Your Project
                 </motion.button>
               </a>
-              <a href="https://wa.me/917874369355" target="_blank" rel="noopener noreferrer">
+              <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer"> {/* ✅ uses SITE.whatsapp */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   className="px-8 py-3 bg-green-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
