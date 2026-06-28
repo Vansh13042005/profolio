@@ -1,178 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
 
-    <!-- ═══════════════════════════════════════════
-         Google Tag Manager – must be first in <head>
-    ════════════════════════════════════════════ -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-58HJ3BMD');
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <!-- ═══════════════════════════════════════════
-         VIEWPORT & THEME
-    ════════════════════════════════════════════ -->
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#2563eb" />
 
-    <!-- ═══════════════════════════════════════════
-         FAVICON & ICONS
-    ════════════════════════════════════════════ -->
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" type="image/x-icon" />
-    <link rel="icon"          href="%PUBLIC_URL%/favicon.ico" type="image/x-icon" />
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96"   href="%PUBLIC_URL%/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/web-app-manifest-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/web-app-manifest-512x512.png" />
-    <link rel="apple-touch-icon" sizes="180x180"      href="%PUBLIC_URL%/apple-touch-icon.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-
-    <!-- ═══════════════════════════════════════════
-         PERFORMANCE
-    ════════════════════════════════════════════ -->
+    <!-- Performance Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.google-analytics.com" />
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://profolionode.vanshpatel.in" />
 
-    <!-- ═══════════════════════════════════════════
-         PRIMARY META
-    ════════════════════════════════════════════ -->
-    <title>Vansh Patel | Full Stack Developer – React &amp; Node.js Expert</title>
-    <meta name="title"       content="Vansh Patel | Full Stack Developer – React &amp; Node.js Expert" />
-    <meta name="description" content="Vansh Patel is a Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and JavaScript. Experienced in building responsive web apps, REST APIs, and modern UI. Available for work." />
-    <meta name="keywords"    content="Vansh Patel, Full Stack Developer, React Developer, Node.js Developer, JavaScript Developer Ahmedabad, Frontend Developer India, React.js Expert, Express.js Developer, MongoDB Developer" />
-    <meta name="author"      content="Vansh Patel" />
-    <meta name="language"    content="English" />
-    <meta name="robots"      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Primary Meta -->
+    <title>Vansh Patel | Full Stack Developer Ahmedabad - React &amp; Node.js Expert</title>
+    <meta name="title"         content="Vansh Patel | Full Stack Developer Ahmedabad - React &amp; Node.js Expert" />
+    <meta name="description"   content="Vansh Patel is a Full Stack Developer from Ahmedabad specialising in React.js, Node.js &amp; JavaScript. BCA graduate, Purvsoft Technologies. Available for freelance &amp; full-time work worldwide." />
+    <meta name="keywords"      content="Vansh Patel, Full Stack Developer Ahmedabad, React Developer India, Node.js Developer Gujarat, JavaScript Developer, hire React developer" />
+    <meta name="author"        content="Vansh Patel" />
+    <meta name="language"      content="en" />
+    <meta name="robots"        content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="revisit-after" content="7 days" />
 
-    <link rel="canonical" href="https://www.vanshpatel.in/" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.vanshpatel.in" />
 
-    <!-- ═══════════════════════════════════════════
-         OPEN GRAPH
-    ════════════════════════════════════════════ -->
-    <meta property="og:type"         content="website" />
-    <meta property="og:url"          content="https://www.vanshpatel.in/" />
-    <meta property="og:title"        content="Vansh Patel | Full Stack Developer – React &amp; Node.js Expert" />
-    <meta property="og:description"  content="Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and JavaScript. Building responsive web apps and REST APIs." />
-    <meta property="og:image"        content="https://www.vanshpatel.in/VanshPatel.png" />
-    <meta property="og:image:alt"    content="Vansh Patel – Full Stack Developer Portfolio" />
-    <meta property="og:image:width"  content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name"    content="Vansh Patel Portfolio" />
-    <meta property="og:locale"       content="en_US" />
+    <!-- Open Graph -->
+    <meta property="og:type"              content="website" />
+    <meta property="og:url"               content="https://www.vanshpatel.in" />
+    <meta property="og:title"             content="Vansh Patel | Full Stack Developer Ahmedabad - React &amp; Node.js Expert" />
+    <meta property="og:description"       content="Vansh Patel is a Full Stack Developer from Ahmedabad specialising in React.js, Node.js &amp; JavaScript. Available for work worldwide." />
+    <meta property="og:image"             content="https://www.vanshpatel.in/vanshpatel.png" />
+    <meta property="og:image:secure_url"  content="https://www.vanshpatel.in/vanshpatel.png" />
+    <meta property="og:image:alt"         content="Vansh Patel - Full Stack Developer Ahmedabad" />
+    <meta property="og:image:width"       content="800" />
+    <meta property="og:image:height"      content="800" />
+    <meta property="og:image:type"        content="image/png" />
+    <meta property="og:site_name"         content="Vansh Patel - Full Stack Developer" />
+    <meta property="og:locale"            content="en_US" />
 
-    <!-- ═══════════════════════════════════════════
-         TWITTER CARD
-    ════════════════════════════════════════════ -->
+    <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:site"        content="@vanshpatel" />
-    <meta name="twitter:url"         content="https://www.vanshpatel.in/" />
-    <meta name="twitter:title"       content="Vansh Patel | Full Stack Developer" />
-    <meta name="twitter:description" content="Full Stack Developer specialising in React.js, Node.js, and JavaScript. Based in Ahmedabad, India. Available for work." />
-    <meta name="twitter:image"       content="https://www.vanshpatel.in/VanshPatel.png" />
+    <meta name="twitter:site"        content="@patelvansh13" />
+    <meta name="twitter:creator"     content="@patelvansh13" />
+    <meta name="twitter:title"       content="Vansh Patel | Full Stack Developer Ahmedabad" />
+    <meta name="twitter:description" content="Full Stack Developer specialising in React.js &amp; Node.js. Based in Ahmedabad. Available worldwide." />
+    <meta name="twitter:image"       content="https://www.vanshpatel.in/vanshpatel.png" />
 
-    <!-- ═══════════════════════════════════════════
-         GEO
-    ════════════════════════════════════════════ -->
+    <!-- Geo / Local SEO -->
     <meta name="geo.region"    content="IN-GJ" />
     <meta name="geo.placename" content="Ahmedabad, Gujarat, India" />
     <meta name="geo.position"  content="23.0225;72.5714" />
+    <meta name="ICBM"          content="23.0225, 72.5714" />
 
-    <!-- ═══════════════════════════════════════════
-         VERIFICATION
-    ════════════════════════════════════════════ -->
+    <!-- PWA / Mobile (fixed: removed deprecated apple-mobile-web-app-capable) -->
+    <meta name="theme-color"                           content="#2563eb" />
+    <meta name="msapplication-TileColor"               content="#2563eb" />
+    <meta name="mobile-web-app-capable"                content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title"            content="Vansh Patel" />
+
+    <!-- Favicons -->
+    <link rel="icon"             type="image/png" sizes="32x32"  href="/favicon-32x32.png" />
+    <link rel="icon"             type="image/png" sizes="16x16"  href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180"                 href="/apple-touch-icon.png" />
+    <link rel="manifest"                                          href="/site.webmanifest" />
+
+    <!-- Verification -->
     <meta name="google-site-verification" content="5xpYf9seCnaC4Hb4ep3OG28kyajDwYjH73axtF5UpBY" />
 
-    <!-- ═══════════════════════════════════════════
-         STRUCTURED DATA
-    ════════════════════════════════════════════ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Vansh Patel",
-      "url": "https://www.vanshpatel.in",
-      "image": "https://www.vanshpatel.in/VanshPatel.png",
-      "jobTitle": "Full Stack Developer",
-      "description": "Full Stack Developer from Ahmedabad specialising in React.js, Node.js, and JavaScript. Experienced in building responsive web applications and REST APIs.",
-      "email": "patelvansh1305@gmail.com",
-      "telephone": "+919023954043",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ahmedabad",
-        "addressRegion": "Gujarat",
-        "addressCountry": "India"
-      },
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Silver Oak University",
-        "address": "Ahmedabad, Gujarat, India"
-      },
-      "sameAs": [
-        "https://github.com/Vansh13042005",
-        "https://linkedin.com/in/patelvansh13",
-        "https://twitter.com/vanshpatel"
-      ],
-      "knowsAbout": [
-        "React.js", "Node.js", "JavaScript", "HTML5", "CSS3",
-        "Express.js", "MySQL", "MongoDB", "AWS", "Git", "REST APIs", "Figma"
-      ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Vansh Patel – Full Stack Developer Portfolio",
-      "url": "https://www.vanshpatel.in",
-      "description": "Portfolio of Vansh Patel, Full Stack Developer specialising in React.js, Node.js, and modern JavaScript."
-    }
-    </script>
+    <!-- Preload Critical Image (fixed: added type attribute) -->
+    <link rel="preload" as="image" type="image/png" href="/vanshpatel.png" fetchpriority="high" />
   </head>
-
   <body>
-    <!-- Google Tag Manager (noscript) -->
     <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-58HJ3BMD"
-        height="0" width="0"
-        style="display:none;visibility:hidden"
-        title="Google Tag Manager"
-      ></iframe>
-    </noscript>
-
-    <!-- Content fallback for crawlers / no-JS users -->
-    <noscript>
-      <div style="font-family:sans-serif;max-width:640px;margin:60px auto;padding:24px;text-align:center;line-height:1.6">
-        <h1 style="color:#1e293b">Vansh Patel – Full Stack Developer</h1>
-        <p style="color:#475569">React.js &amp; Node.js Expert based in Ahmedabad, Gujarat, India.</p>
-        <p style="color:#475569">Experienced in React.js, Node.js, JavaScript &bull; Available for work.</p>
-        <p>
-          📧 <a href="mailto:patelvansh1305@gmail.com" style="color:#2563eb">patelvansh1305@gmail.com</a>
-          &nbsp;&bull;&nbsp;
-          📞 <a href="tel:+919023954043" style="color:#2563eb">+91 90239 54043</a>
-          &nbsp;&bull;&nbsp;
-          💬 <a href="https://wa.me/919023954043" style="color:#2563eb">WhatsApp</a>
-        </p>
-        <p style="color:#94a3b8;font-size:14px">Please enable JavaScript to view the full portfolio.</p>
+      <div style="text-align:center;padding:2rem;font-family:sans-serif;">
+        <h1>Vansh Patel - Full Stack Developer Ahmedabad</h1>
+        <p>React.js &amp; Node.js Expert | Available for work worldwide.</p>
+        <p>Email: <a href="mailto:patelvansh1305@gmail.com">patelvansh1305@gmail.com</a></p>
+        <p>Please enable JavaScript to view this portfolio.</p>
       </div>
     </noscript>
-
     <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

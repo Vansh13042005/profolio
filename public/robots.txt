@@ -1,20 +1,16 @@
-# robots.txt – vanshpatel.in
-# https://www.robotstxt.org/robotstxt.html
+# robots.txt — https://www.vanshpatel.in/robots.txt
+# Last updated: 2025
 
 User-agent: *
 Allow: /
-Allow: /VanshPatel.png
-Allow: /favicon.ico
-Allow: /favicon.svg
-Allow: /favicon-16x16.png
-Allow: /favicon-32x32.png
-Allow: /favicon-96x96.png
-Allow: /apple-touch-icon.png
-Allow: /web-app-manifest-192x192.png
-Allow: /web-app-manifest-512x512.png
-Allow: /manifest.json
-Allow: /sitemap.xml
-Disallow: /static/
+
+# Block non-public routes (add more as needed)
+Disallow: /api/
+Disallow: /admin/
 Disallow: /*.json$
 
+# Crawl-delay (optional — be polite to bots)
+Crawl-delay: 10
+
+# Sitemaps
 Sitemap: https://www.vanshpatel.in/sitemap.xml
