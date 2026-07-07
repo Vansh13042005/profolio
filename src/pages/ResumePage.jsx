@@ -4,12 +4,29 @@ import { motion } from 'framer-motion';
 import { Download, Calendar, Briefcase, GraduationCap } from 'lucide-react';
 import SEO from '../component/SEO';
 import { SITE } from '../config/seo';
-import vanshpatel from '../image/VanshPatel_CV (1).pdf'
+// import vanshpatel from '../image/VanshPatel_CV (1).pdf'
 
 const ResumePage = () => {
   const [experiences, setExperiences] = useState([]);
   const [education, setEducation] = useState([]);
+const [resumeUrl, setResumeUrl] = useState("");
+   useEffect(() => {
+  fetch("https://profolionode.vanshpatel.in/api/resume")
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.success && json.data.length > 0) {
+        let url = json.data[0].file_url;
 
+        // Agar relative path aaye to full URL banao
+        if (!url.startsWith("http")) {
+          url = `https://profolionode.vanshpatel.in/${url}`;
+        }
+
+        setResumeUrl(url);
+      }
+    })
+    .catch((err) => console.log(err));
+}, []);
   useEffect(() => {
     fetch('https://profolionode.vanshpatel.in/api/experience')
       .then(res => res.json())
@@ -97,18 +114,35 @@ const ResumePage = () => {
               My professional journey and qualifications
             </p>
             <motion.a
-              href={vanshpatel}
-              download
-              whileHover={{ scale: 1.05 }}
-              className="mt-8 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold inline-flex items-center gap-2 shadow-lg hover:shadow-xl transition-all"
-              aria-label="Download Vansh Patel's Resume PDF"
-            >
-              <Download size={18} /> Download Resume (PDF)
-            </motion.a>
+                href={resumeUrl}
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                className="mt-8 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold inline-flex items-center gap-2 shadow-lg hover:shadow-xl transition-all"
+              >
+                <Download size={18} />
+                Download Resume (PDF)
+              </motion.a>
           </motion.div>
         </div>
       </section>
-
+      {resumeUrl ? (
+  <motion.a
+    href={resumeUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="..."
+  >
+    <Download size={18}/>
+    Download Resume (PDF)
+  </motion.a>
+) : (
+  <button
+    disabled
+    className="mt-8 px-6 py-3 bg-gray-400 text-white rounded-lg"
+  >
+    Loading Resume...
+  </button>
+)}
       {/* ── Experience & Education ── */}
       <section className="py-20 bg-white dark:bg-slate-900 overflow-hidden" aria-label="Work Experience and Education">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
