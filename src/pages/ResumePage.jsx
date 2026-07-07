@@ -113,36 +113,28 @@ const [resumeUrl, setResumeUrl] = useState("");
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
               My professional journey and qualifications
             </p>
-            <motion.a
+            {resumeUrl ? (
+              <motion.a
                 href={resumeUrl}
+                target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                className="mt-8 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold inline-flex items-center gap-2 shadow-lg hover:shadow-xl transition-all"
+                className="..."
               >
-                <Download size={18} />
+                <Download size={18}/>
                 Download Resume (PDF)
               </motion.a>
+            ) : (
+              <button
+                disabled
+                className="mt-8 px-6 py-3 bg-gray-400 text-white rounded-lg"
+              >
+                Loading Resume...
+              </button>
+            )}
           </motion.div>
         </div>
       </section>
-      {resumeUrl ? (
-  <motion.a
-    href={resumeUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="..."
-  >
-    <Download size={18}/>
-    Download Resume (PDF)
-  </motion.a>
-) : (
-  <button
-    disabled
-    className="mt-8 px-6 py-3 bg-gray-400 text-white rounded-lg"
-  >
-    Loading Resume...
-  </button>
-)}
+      
       {/* ── Experience & Education ── */}
       <section className="py-20 bg-white dark:bg-slate-900 overflow-hidden" aria-label="Work Experience and Education">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
